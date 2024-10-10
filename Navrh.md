@@ -13,18 +13,28 @@ Požadavky uživatele:
 - ...
 
 ## Průzkum existujících řešení
-### Aplikace 1 - ...
+### Aplikace 1 - Člobrdo
+-odkaz na aplikaci https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.html
 Výhody:
-- ...
+- zobrazení figurek hráče. který je na tahu
+- figurky nasazeny na začátku hry
+- naznačení hodu figurky
 
 Nevýhody:
-- ...
-### Aplikace 2 - ...
+- výběr pouze ze dvou možností figurek
+- tlačítko QUIT na hlavní straně
+- všechny figurky mohou být počítač
+### Aplikace 2 Člověče nezlob se
+- odkaz na aplikaci https://www.vicko.cz/hry/online/clovece-nezlob-se/
 Výhody:
-- ...
+- zobrazuje je historie hry
+- lze si zapsat jméno k vybrané barvě figurek
+- lze vybrat ze tří možností figurek 
 
 Nevýhody:
-- ...
+- hráči musí hrát u jednoho počítače
+- když se háže, kostkou je možnosti ji zastavit na číslici 6
+-- TODO jedna nevýhoda
 ### Aplikace 3 - ...
 Výhody:
 - ...
@@ -50,8 +60,31 @@ Vytvořit hru by vygenerovalo nějaký textový kód, pomocí kterého se budou 
 Připojit do hry by jsi tam zadala ten kód.
 ...
 
+---------
+TODO smazat
+Zadání
+● popis požadované cílové aplikace,
+● včetně klíčových částí FE
+------------
+Aplikace má za cíl projit hráče(zejména přátele) po celém světě. V hlavním menu se budou nacházet 2 tlačítka. 
+1. tlačítko vytvořit hru 
+- generovalo by textový kód, pomocí kterého  by se ostatní hrači připojovali do dané hry/roomky
+2. tlačítko připojit se do hry
+- po zadání kódu se zobrazí hrací deska a ostatní pripojení hráči
+Nahrací desce se zobrazí figurky v modré, zelené, žluté a červené barvy a také tlačítko pro hod kostkou.
+
 ## Rozdělení práce v týmu na FE
-...
+TODO: rozdelit
 
 ## Návrh
-...
+
+Návrh Gui jsem dělala ve Figmě. Jedná se o hrací desku s figurkami a kostkou. Jesliže hráč hodím kostkou, je mu umožněno jet figurko
+
+![Máme pro vás dravé řešení](img/Screenshot%20from%202024-10-10%2014-15-43.png)
+
+### Výběr technologií
+TODO: 
+BE- FLASK
+FE ?
+
+### Návrh API k BE
