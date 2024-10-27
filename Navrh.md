@@ -13,8 +13,10 @@ Požadavky uživatele:
 - ...
 
 ## Průzkum existujících řešení
+
 ### Aplikace 1 - Člobrdo
--odkaz na aplikaci https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.html
+Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.html
+ 
 Výhody:
 - zobrazení figurek hráče. který je na tahu
 - figurky nasazeny na začátku hry
@@ -24,8 +26,10 @@ Nevýhody:
 - výběr pouze ze dvou možností figurek
 - tlačítko QUIT na hlavní straně
 - všechny figurky mohou být počítač
+
 ### Aplikace 2 Člověče nezlob se
-- odkaz na aplikaci https://www.vicko.cz/hry/online/clovece-nezlob-se/
+Odkaz na aplikaci: https://www.vicko.cz/hry/online/clovece-nezlob-se/
+
 Výhody:
 - zobrazuje je historie hry
 - lze si zapsat jméno k vybrané barvě figurek
@@ -34,7 +38,8 @@ Výhody:
 Nevýhody:
 - hráči musí hrát u jednoho počítače
 - když se háže, kostkou je možnosti ji zastavit na číslici 6
--- TODO jedna nevýhoda
+- TODO: jedna nevýhoda
+
 ### Aplikace 3 - ...
 Výhody:
 - ...
