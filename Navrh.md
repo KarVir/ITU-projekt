@@ -9,8 +9,17 @@ TODO: Oznacit kapitana
 Uživatel je člověk, který má rád deskové hry, ale má většinu přátel v zahraničí.
 Chce si s nějakým takovým kamarádem zahrát Člověče, nezlob se! online přes internet.
 
-Požadavky uživatele:
-- ...
+### Požadavky uživatele:
+
+POZOR: Před odevzdáním je nutné sumarizovat všechny uživatele do jenoho textu. Viz zadání projektu - "za celý tým proveďte shrnutí od všech členů týmu do jasné konkrétní detailní specifikace požadavků uživatele".
+
+#### Uživatel A
+Shromáždění do lobby před začátkem hry, v lobby vidět kdo bude hrát za jakou barvu. Pohled na desku ze shora (2D). Automatické přesouvání figurek (kliknutí na figurku a ona se posune na příslušné místo). Zobrazit upozornění a kostku (tlačítko pro hození), když je hráč na řadě. Výměnu herní desky považuje za důležitou. Nevyplňovat chybějící hráče boty. Na konci hry výsledná obrazovak s pořadím a výhercem.
+#### Uživatel B
+Možnost vytvořit místnost (lobby) s kódem pro připojení ostatních hráčů. Tlačítko pro hození kostky. Manuální přesouvání figurky (označení figurky a kliknutí na cílové políčko). Časovač herního kola (časový limit pro hráče). Výměnu herní desky z klasické 2-4 na 5-6 nepovažuje vůbec za důležité. Ideálně mít možnost vyplnit zbylé hráče boty. Zobrazovat aktuální skóre. In-game chat.
+#### Uživatel C
+
+#### Uživatel D
 
 ## Průzkum existujících řešení
 
