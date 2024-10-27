@@ -83,8 +83,16 @@ Návrh Gui jsem dělala ve Figmě. Jedná se o hrací desku s figurkami a kostko
 ![Máme pro vás dravé řešení](img/Screenshot%20from%202024-10-10%2014-15-43.png)
 
 ### Výběr technologií
-TODO: 
-BE- FLASK
-FE ?
+#### Backend
+Na prvním meetingu jsme se v týmu domluvili, že backend bude vytvořen v programovacím jazyce Python a bude využívat framework Flask pro HTTP komunikaci. Jelikož cílem aplikace je vytvořit multiplayerovou hru, pak bude nejlepší použít WebSockety pro obousměrnou komunikaci v reálném čase.
+
+Hlavní knihovny:
+- Flask
+- Flask-SocketIO
+
+#### Frontend
+Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:
+- Adam Charvát: Vue.js
+- Karolína Virágová: React
 
 ### Návrh API k BE
