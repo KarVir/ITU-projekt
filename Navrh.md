@@ -23,7 +23,7 @@ Možnost vytvořit místnost (lobby) s kódem pro připojení ostatních hráč�
 
 ## Průzkum existujících řešení
 
-### Aplikace 1 - Člobrdo
+### Aplikace 1: Člobrdo
 Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.html
  
 Výhody:
@@ -36,7 +36,7 @@ Nevýhody:
 - tlačítko QUIT na hlavní straně
 - všechny figurky mohou být počítač
 
-### Aplikace 2 Člověče nezlob se
+### Aplikace 2: Člověče nezlob se
 Odkaz na aplikaci: https://www.vicko.cz/hry/online/clovece-nezlob-se/
 
 Výhody:
@@ -49,18 +49,46 @@ Nevýhody:
 - když se háže, kostkou je možnosti ji zastavit na číslici 6
 - TODO: jedna nevýhoda
 
-### Aplikace 3 - ...
+### Aplikace 3: Člověče nezlob se - Multiplayer
+Odkaz na aplikaci: https://www.zahraj.cz/online-hra/lovee-nehnevaj-sa-multiplayer/
+
+Inspirace:
+- výměna herní desky?
+- lokalizace?
+
 Výhody:
-- ...
+- velmi přehledné uživatelské rozhraní **před začátkem hry**
+- UI je přívětivé pro děti (velikost ovládacích prvků a rozporcování UI na více obrazovek, kdy každá má jasný význam)
+- možnost přepnout mezi boty a reálnými hráči a zvolit počet hráčů/botů (2-4)
+- při hře figurky, na které lze kliknout blikají nebo se ukazuje ručička nad kostkou, když je hráč na tahu
+- hráči si můžou vybrat avatar z předdefinovaných, který se pak zobrazuje vedle jména
 
 Nevýhody:
-- ...
-### Aplikace 4 - ...
+- nelze hrát s konkrétními lidmi, match making je random
+- nejde vyměnit herní deska, může být nepřehledná pro některé uživatele, kteří neznají tuto variantu
+- chybí šipky pro označení startovního pole nebo pole, ze kterého se dostává do domečku
+- místo "auto-mode" mohlo být napsáno, že se za hráče bude automaticky házet kostkou a hýbat figurkama
+- maximální počet hráčů jsou 4
+- aplikace nepodporuje lokalizaci
+
+### Aplikace 4: Ludo Wizard Game
+
+Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-se
+
+Inspirace:
+- vyplnění hesla místnosti je uživatelsky lepší způsob, než že je heslo vygenerováno a zobrazeno?
+- hra s náhodnými hráči nemá u člověče nezlob se smysl
+
 Výhody:
-- ...
+- možnost hrát buď s boty, nebo random hráči, nebo přáteli
+- vytvoření místnosti pro hraní s přáteli funguje tak, že host vyplní heslo, které sdělí ostatním hráčům a ti ho zadají
+- na desce jsou označené startovní a končené pole
+- časovač pro hození kostky
 
 Nevýhody:
-- ...
+- v případě hraní s random hráči je čekací doba dlouhá (> 5min), navíc se stává, že hráči opustí hru - otázou je, zda-li má tento mód vůbec smysl
+- na jednom startovním poli může být více figurek od více hráčů (figurky se nevyhazují)
+- figurky jsou fantasy postavičky, které lze těžko od sebe rozeznat (není jasné od které barvy je která figurka)
 
 ## Zadání
 ...
