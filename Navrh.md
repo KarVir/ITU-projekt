@@ -1,13 +1,19 @@
-# Člověče, nezlob se! online s přáteli
+# Zadání
+
+## Název a téma
+Naše aplikace se jmenuje: **Člověče, nezlob se! online s přáteli**
+
 Tým:
 - Adam Charvát
 - Karolína Virágová
 
 TODO: Oznacit kapitana
 
-## Uživatelský průzkum
+## Uživatelský průzkum a specifikace
 Uživatel je člověk, který má rád deskové hry, ale má většinu přátel v zahraničí.
 Chce si s nějakým takovým kamarádem zahrát Člověče, nezlob se! online přes internet.
+
+TODO: Možná více zkonkretizovat?
 
 ### Požadavky uživatele:
 
@@ -23,7 +29,11 @@ Možnost vidět ostatní hráče před začátkem hry, ale barvu vybírat až po
 Chce možnost hrát i s boty, pokud nejsou dostupní všichni hráči. Preferuje stručný přehled výsledků,spíše rychlé zobrazeni pořadí. Také preferuje restartovat hru bez nutnosti vytvářet novou místnost(lobby).
 #### Uživatel D
 Uvítal by rychlé připojení do hry bez lobby. aby byla hra co nejrychhleji spuštěna. Je pro pohled shora(2D), aby se hra dala jednoduše ovládat a byla přehledná. Automatické přesouvání po kliknutí na fugirku, což zrychlí tah. Kostka se hází automaticky, aby byla hra svižnější. Výměnu herní desky nepovažuje za důležité- stačí jedna pevná varianta desky. Nechce boty ani jiná Ai řešení, preferuje hru pouze s reálními hráči. Konec hry bez podrobného skóre, pouze vítěz, Nepotřebuje průběžné skóre během hry.
+
 ## Průzkum existujících řešení
+
+TODO: "za celý tým vyvoďte z průzkumu každého člena závěry a specifikujte 3
+inspirace/ponaučení pro vlastní návrh."
 
 ### Aplikace 1: Člobrdo
 Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.html
@@ -40,6 +50,7 @@ Výhody:
 Nevýhody:
 - omezené možnosti interakce, chybí možnost chatu nebo přizpůsobení hry.
 - jednoduchá grafika a absence podrobnějších animací, což může být nevýhodou pro hráče hledající vizuální zážitek.
+
 ### Aplikace 2: Člověče nezlob se
 Odkaz na aplikaci: https://www.vicko.cz/hry/online/clovece-nezlob-se/
 
@@ -124,23 +135,30 @@ Nahrací desce se zobrazí figurky v modré, zelené, žluté a červené barvy 
 ## Rozdělení práce v týmu na FE
 Každý člen týmu bude vytvářet svůj frontend
 
-## Návrh
-Karolína Virágová
+# Návrh
+
+## Návrh GUI
+
+### Karolína Virágová
 Návrh Gui jsem dělala ve Figmě. Jedná se o hrací desku s figurkami a kostkou.
 
 ![návrh](img/Screenshot%20from%202024-10-10%2014-15-43.png)
 
-### Výběr technologií
-#### Backend
+### Adam Charvát
+TODO!
+
+## Výběr technologií
+### Backend
 Na prvním meetingu jsme se v týmu domluvili, že backend bude vytvořen v programovacím jazyce Python a bude využívat framework Flask pro HTTP komunikaci. Jelikož cílem aplikace je vytvořit multiplayerovou hru, pak bude nejlepší použít WebSockety pro obousměrnou komunikaci v reálném čase.
 
 Hlavní knihovny:
 - Flask
 - Flask-SocketIO
 
-#### Frontend
+### Frontend
 Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:
 - Adam Charvát: Vue.js
-- Karolína Virágová: React- react, useState, useEffect 
+- Karolína Virágová: React - react, useState, useEffect 
 
-### Návrh API k BE
+## Návrh API k BE
+TODO!
