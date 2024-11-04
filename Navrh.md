@@ -122,15 +122,45 @@ Připojit do hry by jsi tam zadala ten kód.
 ---------
 TODO smazat
 Zadání
-● popis požadované cílové aplikace,
+●Popis požadované cílové aplikace,
 ● včetně klíčových částí FE
-------------
-Aplikace má za cíl projit hráče(zejména přátele) po celém světě. V hlavním menu se budou nacházet 2 tlačítka. 
-1. tlačítko vytvořit hru 
-- generovalo by textový kód, pomocí kterého  by se ostatní hrači připojovali do dané hry/roomky
-2. tlačítko připojit se do hry
-- po zadání kódu se zobrazí hrací deska a ostatní pripojení hráči
-Nahrací desce se zobrazí figurky v modré, zelené, žluté a červené barvy a také tlačítko pro hod kostkou.
+
+## Popis požadované cílové aplikace
+
+
+## Klíčové částí FE
+## Hlavní menu
+- **Input box pro kód hry** – pro připojení ke hře.
+- **Tlačítka**:
+  - **Připojit** – připojení ke hře po zadání kódu.
+  - **Vytvořit** – vytvoření nové hry.
+
+## Obrazovka pro zadání přezdívky
+- **Input box** pro zadání přezdívky.
+- **Tlačítko "Pokračovat"** – pokračování do lobby po zadání přezdívky.
+
+### Lobby
+- **Seznam připojených hráčů** – zobrazení všech aktuálně připojených hráčů.
+- **Možnost spuštění hry pro hostitele** – hostitel má tlačítko pro spuštění hry.
+
+### Herní plocha
+- **Virtuální herní deska** připomínající klasickou verzi hry s barevnými startovními poli, cílovými poli a cestou kolem dokola.
+- **Jména hráčů** – zobrazení jmen hráčů v rozích herní desky.
+- **Interaktivní kostka** – tlačítko pro hod kostkou, které náhodně vygeneruje číslo.
+- **Figurky hráčů** – ikony figurek, které se pohybují po herní ploše podle počtu hodů. Figurka by byla zvýrazněna, pokud je na tahu hráč dané barvy, což zjednoduší orientaci.
+
+### Overlay text
+- **Stavová oznámení**:
+  - "Jsi na tahu" – indikace, že je řada daný hráči.
+  - "Červená vyhodila zelenou" – upozornění na události ve hře.
+  - "Zbývá 30s do konce tvého kola" – odpočítávání času na tah.
+
+### Boční panel
+- **Historie tahů** – zobrazení tahů všech hráčů, což umožňuje sledovat postup a přehled o celé hře.
+- **Nápověda a pravidla hry** – zjednodušené pokyny a vysvětlení pravidel, ke kterým by se hráč mohl kdykoliv vrátit.
+
+### Konec hry a skóre
+- Po ukončení hry se zobrazí **tabulka s výsledky** a možnost tlačítko restartu hry nebo návratu na hlavní obrazovku.
 
 ## Rozdělení práce v týmu na FE
 Každý člen týmu bude vytvářet svůj frontend
