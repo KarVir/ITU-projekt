@@ -161,4 +161,187 @@ Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:
 - Karolína Virágová: React - react, useState, useEffect 
 
 ## Návrh API k BE
-TODO!
+
+### Datové struktury
+
+#### Player
+```ts
+interface Player {
+    id: number, // unique identifier
+    name: string
+}
+```
+#### Piece
+```ts
+interface Piece {
+    ownerId: number, // Player.id
+    position: number | null;
+    commonPosition: number | null;
+}
+```
+#### Game
+```ts
+interface Game {
+    board: {
+        /* e.g. 40 */
+        commonLength: number,
+        /* e.g. 4 */
+        houseLength: number
+    },
+    players: [Player],
+    pieces: [Piece],
+    nextPlayerId: number // Player.id
+}
+```
+
+#### Collision Info
+```ts
+interface CollisionInfo {
+    action: 'kicked' | 'denied',
+    position: number,
+    piece: Piece,
+    issuedBy: number // Player.id
+}
+```
+
+### Socket.IO události
+
+#### Události vyvolané knihovnou
+
+Event `connect`
+
+Event `disconnect`
+
+#### Vlastní události
+
+Události jsou vyvolávané voláním funkce `emit(eventName, data)`;
+
+**Event** `session:create`\
+*Vytvoření místnosti (lobby)*\
+Client -> Server
+```ts
+data: {
+    // přezdívka vlastníka místnosti
+    name: string
+}
+```
+
+**Event** `session:created`\
+*Oznámení o vytvoření místnosti (error?)*\
+Client <- Server
+```ts
+// klíč k místnosti (identifikátor)
+data: string
+```
+
+**Event** `session:join`\
+*Žádost o připojení do místnosti*\
+Client -> Server
+```ts
+data: {
+    // klíč k místnosti
+    sessionKey: string,
+    // přezdívka připojujícího se klienta
+    name: string
+}
+```
+
+**Event** `session:joined`\
+*Odpověď o úspěšném připojení do místnosti*\
+Client <- Server
+```ts
+data: {
+    // aktuálně připojení klienti ve stejné místnosti
+    players: [Player]
+}
+```
+
+**Event** `session:newClient`\
+*Oznámení všem klientům v jedné místnosti (kromě nově připojeného), že se připojil nový klient*\
+Room:Clients <- Server
+```ts
+// nově připojený klient
+data: Player
+```
+
+**Event** `session:newClient`\
+*Oznámení všem klientům v jedné místnosti (kromě nově připojeného), že se připojil nový klient*\
+Room[old Clients] <- Server
+```ts
+// nově připojený klient
+data: Player
+```
+
+**Event** `game:start`\
+*Žádost o zahájení hry*\
+Client -> Server
+```ts
+// žádná další data se neposílají na server
+data: null
+```
+
+**Event** `game:started`\
+*Oznámení o zahájení hry*\
+Room[all Clients] <- Server
+```ts
+data: Game
+```
+
+**Event** `game:play`\
+*Žádost o hození kostky - vygenerování náhodného čísla*\
+Client -> Server
+```ts
+data: null
+```
+
+**Event** `game:diceRolled`\
+*Oznámení všem v místnosti, že hráč hodil kostku*\
+Room[all Clients] <- Server
+```ts
+// ID hráče, který hodil kostku
+playerId: number,
+// Číslo 1 - 6
+dice: number
+```
+
+**Event** `game:movePiece`\
+*Žádost o pohnutí figurky*\
+Client -> Server
+```ts
+data: {
+    // společná pozice figurky, s kterou se má pohnout
+    commonPosition: number
+}
+```
+
+**Event** `game:deployPiece`\
+*Žádost o umístění nové figurky na startovní pole*\
+Client -> Server
+```ts
+data: null
+```
+
+**Event** `game:update`\
+*Žádost všem klientům o upravení datového modelu hry*\
+Room[all Clients] <- Server
+```ts
+data: {
+    collision: CollisionInfo,
+    updatedPiece: Piece,
+    nextPlayerId: number
+}
+```
+
+**Event** `game:end`\
+*Žádost všem klientům o upravení datového modelu hry*\
+Room[all Clients] <- Server
+```ts
+data: {
+
+}
+```
+
+## Flask Routes
+
+/synchronize request
+
