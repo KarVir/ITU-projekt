@@ -27,14 +27,37 @@ Shromáždění do lobby před začátkem hry, v lobby vidět kdo bude hrát za 
 Možnost vytvořit místnost (lobby) s kódem pro připojení ostatních hráčů. Tlačítko pro hození kostky. Manuální přesouvání figurky (označení figurky a kliknutí na cílové políčko). Časovač herního kola (časový limit pro hráče). Výměnu herní desky z klasické 2-4 na 5-6 nepovažuje vůbec za důležité. Ideálně mít možnost vyplnit zbylé hráče boty. Zobrazovat aktuální skóre. In-game chat.
 
 #### Uživatel C
-Možnost vidět ostatní hráče před začátkem hry, ale barvu vybírat až po zahájení hry. Preferuje 3D pohled na herní desku, aby bylo vidět více detailů. Manuální přesouvání, kde hráč klikne na figurku a poté na cílové políčko pro přesun. Tlačítko pro hod kostkou vždy k dispozici, bez nutnosti čekat. Možnost výměny desky je výhodou, ale není zásadní.
+Možnost vidět ostatní hráče před začátkem hry, ale barvu přiřadit náhodně. Preferuje 3D pohled na herní desku, aby bylo vidět více detailů. Manuální přesouvání, kde hráč klikne na figurku a poté na cílové políčko pro přesun. Tlačítko pro hod kostkou vždy k dispozici, bez nutnosti čekat. Možnost výměny desky je výhodou, ale není zásadní.
 Chce možnost hrát i s boty, pokud nejsou dostupní všichni hráči. Preferuje stručný přehled výsledků,spíše rychlé zobrazeni pořadí. Také preferuje restartovat hru bez nutnosti vytvářet novou místnost(lobby).
 
 #### Uživatel D
-Uvítal by rychlé připojení do hry bez lobby. aby byla hra co nejrychhleji spuštěna. Je pro pohled shora(2D), aby se hra dala jednoduše ovládat a byla přehledná. Automatické přesouvání po kliknutí na fugirku, což zrychlí tah. Kostka se hází automaticky, aby byla hra svižnější. Výměnu herní desky nepovažuje za důležité- stačí jedna pevná varianta desky. Nechce boty ani jiná Ai řešení, preferuje hru pouze s reálními hráči. Konec hry bez podrobného skóre, pouze vítěz, Nepotřebuje průběžné skóre během hry.
+Uvítal by rychlé připojení do hry bez lobby. aby byla hra co nejrychhleji spuštěna. Je pro pohled shora(2D), aby se hra dala jednoduše ovládat a byla přehledná. Automatické přesouvání po kliknutí na figurku, což zrychlí tah. Kostka se hází automaticky, aby byla hra svižnější. Výměnu herní desky nepovažuje za důležité- stačí jedna pevná varianta desky. Nechce boty ani jiná Ai řešení, preferuje hru pouze s reálními hráči. Konec hry bez podrobného skóre, pouze vítěz, Nepotřebuje průběžné skóre během hry.
 
-#### Shrnutí požadavků
-Aplikace je určena pro interaktivní hraní deskové hry a vychází z různých požadavků uživatelů. Uživatelé chtějí možnost shromáždění do lobby před začátkem hry, kde budou vidět, kdo hraje za jakou barvu, s preferencí pro 2D pohled na herní desku. Automatické přesouvání figurek a házení kostkou jsou žádány pro zrychlení hry. Uživatel B chce možnost vytvářet místnosti s kódem a časovač pro tahy, zatímco uživatel C preferuje 3D pohled a manuální přesouvání figurek, přičemž chce hrát i s boty, pokud nejsou dostupní všichni hráči. Uživatel D by uvítal rychlé připojení bez lobby, s jednoduchou 2D grafikou a automatickým hodem kostkou, preferuje hru pouze s reálnými hráči a požaduje stručné zobrazení výsledků bez detailního skóre. Výměna herní desky je pro některé uživatele důležitá, zatímco jiní ji považují za nepodstatnou. Všechny požadavky směřují k rychlému, přehlednému a intuitivnímu hernímu zážitku.
+### Shrnutí požadavků
+
+#### 1. Lobby a připojení hráčů
+- **Lobby**: Většina uživatelů preferuje shromáždění do lobby před začátkem hry. Lobby má zobrazovat seznam hráčů a jejich zvolené barvy, případně barvu přiřadit náhodně se začátkem hry.
+- **Kód pro připojení**: Hráči se připojí po zadání kódu do stejné místnosti.
+- **Restart hry**: Uživatelé požadují možnost restartovat hru bez nutnosti vytvářet novou místnost.
+
+#### 2. Herní desku
+- **2D pohled**: Preferovaný pohled shora.
+- **Výměna herní desky**: Pro některé uživatele je možnost výměny herní desky důležitá, například varianta pro 5–6 hráčů oproti klasické desce pro 2–4 hráče. Jiní uživatelé tuto možnost nepovažují za zásadní a vystačí si s jednou pevnou verzí desky.
+
+#### 3. Pohyb figurek a házení kostkou
+- **Pohyb figurek**:
+  - **Automatický pohyb**: Preferovaný některými uživateli. Hráč klikne na figurku, která se automaticky přesune na příslušné místo na desce.
+  - **Manuální pohyb**: Požadovaný jinými uživateli. Hráč klikne na figurku a následně na cílové políčko pro přesun.
+- **Házení kostkou**:
+  - **Manuální hod kostkou**: Uživatelé preferují mít tlačítko pro hod kostkou, které se zobrazí, když je hráč na řadě. Někteří požadují, aby tlačítko bylo vždy k dispozici.
+  - **Automatické házení kostkou**: Preferováno pro zrychlení hry. Kostka se automaticky vrhá, když je hráč na tahu.
+
+#### 4. Upozornění a časovač
+- **Upozornění pro hráče na tahu**: Notifikace a aktivní tlačítko pro hod kostkou, když je hráč na tahu.
+- **Časovač tahu**: Možnost nastavení časového limitu na tah pro urychlení hry.
+
+#### 5. Výsledková obrazovka
+- **Konečný výsledek hry**: Na konci hry se zobrazí tabulka s výsledky, která bude ukazovat pořadí hráčů a vítěze. Pro některé uživatele stačí stručné zobrazení vítěze bez podrobného skóre, zatímco jiní preferují přehledné pořadí.
 
 ## Průzkum existujících řešení
 
@@ -128,30 +151,8 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 
 
 ## Zadání
-
 ### Popis požadované cílové aplikace
-
-Aplikace bude sloužit pro interaktivní hraní deskové hry, přičemž bude reflektovat různorodé preference a požadavky uživatelů.
-
-#### 1. Lobby a připojení hráčů
-- Aplikace umožní vytvoření **lobby** (herní místnosti) před začátkem hry, kde budou hráči moci vidět, kdo se připojil a zahájit hru.
-- Uživatelé se mohou připojit prostřednictvím **unikátního kódu místnosti**.
-
-#### 2. Pohled na herní desku
-- Hlavní herní pohled bude v **jednoduchém 2D formátu** pro zajištění přehlednosti.
-- **Výměna herní desky** mezi různými variantami (např. klasická deska pro 4 hráče a verze pro 5–6 hráčů) bude možná, ale nebude podmínkou pro spuštění hry.
-
-#### 3. Pohyb figurek a házení kostkou
-- Aplikace nabídne dvě varianty pohybu figurek: 
-  - **Automatický pohyb** – hráč klikne na figurku a ta se automaticky přesune na příslušné políčko.
-  - **Tlačítko pro hod kostkou** bude dostupné všem hráčům, aby měli kontrolu nad hodem.
-
-#### 5. Uživatelské rozhraní a notifikace
-- Když bude hráč na tahu, zobrazí se **upozornění a aktivní tlačítko pro hod kostkou**, čímž se zvýší plynulost a přehlednost hry.
-
-#### 6. Výsledková obrazovka
-- Na konci hry se zobrazí **výsledková tabulka** s pořadím hráčů a zvýrazněným vítězem.
-- Výsledky budou stručné a přehledné, přičemž zůstanou dostupné pro rychlý přehled o průběhu hry.
+TODO
 
 ### Klíčové částí FE
 #### Hlavní menu
