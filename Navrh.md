@@ -231,15 +231,23 @@ Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:
 #### Player
 ```ts
 interface Player {
-    id: number, // unique identifier
+    // Unikátní identifikátor hráče
+    id: number,
+    // Přezdívka hráče
     name: string
 }
 ```
 #### Piece
 ```ts
 interface Piece {
+    // ID hráče, který vlastní figurku
     ownerId: number, // Player.id
+    // Pozice vzhledem k celkové cestě, kterou musí figurka ujít
+    // Pokud je pozice null, pak figurka ještě nebyla umístěna na herní desku
+    // Pokud je pozice >= Game.commonLength, pak je figurka v domečku
     position: number | null;
+    // Pozice v rámci společného místa herní desky,
+    // pokud je společná pozice null, figurka ještě nebyla umístěna na herní desku, nebo je v domečku
     commonPosition: number | null;
 }
 ```
@@ -247,13 +255,18 @@ interface Piece {
 ```ts
 interface Game {
     board: {
-        /* e.g. 40 */
+        /* Délka společného místa na desce, klasicky 40 polí */
         commonLength: number,
-        /* e.g. 4 */
-        houseLength: number
+        /* Délka domečku, klasicky 4 pole */
+        houseLength: number,
+        // Maximální počet hráčů
+        maxPlayers: number,
+        // Figurky
+        pieces: [Piece],
     },
+    // Hráči v místnosti
     players: [Player],
-    pieces: [Piece],
+    // Hráč, který je na tahu
     nextPlayerId: number // Player.id
 }
 ```
@@ -270,97 +283,85 @@ interface CollisionInfo {
 
 ### Socket.IO události
 
-#### Události vyvolané knihovnou
+### Události vyvolané knihovnou
 
 Event `connect`
 
 Event `disconnect`
 
-#### Vlastní události
+### Události vyvolané klientem
 
-Události jsou vyvolávané voláním funkce `emit(eventName, data)`;
+Události jsou vyvolávané voláním funkce `emit(eventName, payload, callback)`. Klient dostane `response` jako argument callbacku.
 
 **Event** `session:create`\
-*Vytvoření místnosti (lobby)*\
-Client -> Server
+*Vytvoření místnosti (lobby)*
 ```ts
-data: {
+payload: {
     // přezdívka vlastníka místnosti
     name: string
 }
-```
 
-**Event** `session:created`\
-*Oznámení o vytvoření místnosti (error?)*\
-Client <- Server
-```ts
-// klíč k místnosti (identifikátor)
-data: string
+// klíč k nově vytvořené místnosti (identifikátor)
+response: string
 ```
 
 **Event** `session:join`\
-*Žádost o připojení do místnosti*\
-Client -> Server
+*Žádost o připojení do místnosti*
 ```ts
-data: {
-    // klíč k místnosti
+payload: {
+    // Klíč k místnosti
     sessionKey: string,
-    // přezdívka připojujícího se klienta
+    // Přezdívka připojujícího se klienta
     name: string
 }
-```
 
-**Event** `session:joined`\
-*Odpověď o úspěšném připojení do místnosti*\
-Client <- Server
-```ts
-data: {
-    // aktuálně připojení klienti ve stejné místnosti
-    players: [Player]
+response: {
+    // Aktuálně připojení klienti ve stejné místnosti
+    players: Player[]
 }
-```
-
-**Event** `session:newClient`\
-*Oznámení všem klientům v jedné místnosti (kromě nově připojeného), že se připojil nový klient*\
-Room:Clients <- Server
-```ts
-// nově připojený klient
-data: Player
-```
-
-**Event** `session:newClient`\
-*Oznámení všem klientům v jedné místnosti (kromě nově připojeného), že se připojil nový klient*\
-Room[old Clients] <- Server
-```ts
-// nově připojený klient
-data: Player
 ```
 
 **Event** `game:start`\
-*Žádost o zahájení hry*\
-Client -> Server
+*Žádost o zahájení hry*
+
+**Event** `game:play`\
+*Žádost o hození kostky - vygenerování náhodného čísla*
+
+**Event** `game:movePiece`\
+*Žádost o pohnutí figurky*
 ```ts
-// žádná další data se neposílají na server
+payload: {
+    // Společná pozice figurky, s kterou se má pohnout
+    commonPosition: number
+}
+```
+
+**Event** `game:deployPiece`\
+*Žádost o umístění nové figurky na startovní pole*
+```ts
 data: null
+```
+
+### Události vyvolané serverem
+
+Události jsou vyvolávané voláním funkce `emit(eventName, data)`.
+
+**Event** `session:joined`\
+*Oznámení všem klientům v jedné místnosti (kromě nově připojeného), že se připojil nový klient*
+```ts
+// Nově připojený klient
+data: Player
 ```
 
 **Event** `game:started`\
-*Oznámení o zahájení hry*\
-Room[all Clients] <- Server
+*Oznámení o zahájení hry všem klientům v místnosti*
 ```ts
+// Data potřebná pro vykreslení herní desky GUIčkem
 data: Game
 ```
 
-**Event** `game:play`\
-*Žádost o hození kostky - vygenerování náhodného čísla*\
-Client -> Server
-```ts
-data: null
-```
-
 **Event** `game:diceRolled`\
-*Oznámení všem v místnosti, že hráč hodil kostku*\
-Room[all Clients] <- Server
+*Oznámení všem v místnosti, že hráč hodil kostku*
 ```ts
 // ID hráče, který hodil kostku
 playerId: number,
@@ -368,35 +369,20 @@ playerId: number,
 dice: number
 ```
 
-**Event** `game:movePiece`\
-*Žádost o pohnutí figurky*\
-Client -> Server
+**Event** `game:updated`\
+*Žádost všem klientům o upravení datového modelu hry*
 ```ts
 data: {
-    // společná pozice figurky, s kterou se má pohnout
-    commonPosition: number
-}
-```
-
-**Event** `game:deployPiece`\
-*Žádost o umístění nové figurky na startovní pole*\
-Client -> Server
-```ts
-data: null
-```
-
-**Event** `game:update`\
-*Žádost všem klientům o upravení datového modelu hry*\
-Room[all Clients] <- Server
-```ts
-data: {
-    collision: CollisionInfo,
+    // Informace o kolizi pokud nastala
+    collision: CollisionInfo | null,
+    // Aktualizovaná figurka, kterou je potřeba nahradit v datovém modelu
     updatedPiece: Piece,
+    // Další hráč na tahu
     nextPlayerId: number
 }
 ```
 
-**Event** `game:end`\
+**Event** `game:ended`\
 *Žádost všem klientům o upravení datového modelu hry*\
 Room[all Clients] <- Server
 ```ts
