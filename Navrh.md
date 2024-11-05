@@ -234,7 +234,9 @@ interface Player {
     // Unikátní identifikátor hráče
     id: number,
     // Přezdívka hráče
-    name: string
+    name: string,
+    // Barva - red, green, blue, yellow
+    color: string
 }
 ```
 #### Piece
@@ -301,8 +303,14 @@ payload: {
     name: string
 }
 
-// klíč k nově vytvořené místnosti (identifikátor)
-response: string
+response: {
+    // Klíč k nově vytvořené místnosti
+    key: string,
+    // Vlastník místnosti
+    owner: Player,
+    // Klienti v místnosti (zatím jen jeden)
+    players: Player[]
+}
 ```
 
 **Event** `session:join`\
@@ -310,12 +318,18 @@ response: string
 ```ts
 payload: {
     // Klíč k místnosti
-    sessionKey: string,
+    key: string,
     // Přezdívka připojujícího se klienta
     name: string
 }
 
 response: {
+    // Klíč k místnosti
+    key: string,
+    // Vlastník místnosti
+    owner: Player,
+    // Nově připojený hráč
+    me: Player,
     // Aktuálně připojení klienti ve stejné místnosti
     players: Player[]
 }
