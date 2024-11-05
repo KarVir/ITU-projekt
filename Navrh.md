@@ -221,8 +221,8 @@ Hlavní knihovny:
 
 ### Frontend
 Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:  
-- Adam Charvát: Vue.js  
-- Karolína Virágová: React  
+- Adam Charvát: Angular
+- Karolína Virágová: React
 
 ## Návrh API k BE
 
