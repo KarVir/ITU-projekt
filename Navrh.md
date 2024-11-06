@@ -101,8 +101,7 @@ Odkaz na aplikaci: https://www.zahraj.cz/online-hra/lovee-nehnevaj-sa-multiplaye
 - lokalizace?
 
 #### Výhody:
-- velmi přehledné uživatelské rozhraní **před začátkem hry**
-- UI je přívětivé pro děti (velikost ovládacích prvků a rozporcování UI na více obrazovek, kdy každá má jasný význam)
+- UI je přívětivé pro děti (velikost ovládacích prvků a rozporcování UI na více obrazovek, kdy každá má jeden význam)
 - možnost přepnout mezi boty a reálnými hráči a zvolit počet hráčů/botů (2-4)
 - při hře figurky, na které lze kliknout blikají nebo se ukazuje ručička nad kostkou, když je hráč na tahu
 - hráči si můžou vybrat avatar z předdefinovaných, který se pak zobrazuje vedle jména
@@ -133,7 +132,7 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 - na jednom startovním poli může být více figurek od více hráčů (figurky se nevyhazují)
 - figurky jsou fantasy postavičky, které lze těžko od sebe rozeznat (není jasné od které barvy je která figurka)
 
-### Závěry z průzkumu
+### Závěry z průzkumu (Aplikace 1,2)
 
 1. **Rychlý a snadný přístup**: Všechny aplikace umožňují rychlé připojení bez nutnosti registrace, což výrazně zvyšuje uživatelský komfort. Hráči preferují možnost okamžitě začít hru, a proto je důležité mít jednoduchý proces vytváření herních místností.
 
@@ -141,7 +140,7 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 
 3. **Možnosti interakce a přizpůsobení**: Hráči hledají možnosti, jak hru personalizovat a komunikovat s ostatními. Nedostatek interakčních prvků, jako je chat nebo možnost výběru konkrétních spoluhráčů, snižuje atraktivitu. Hráči chtějí mít možnost hrát s přáteli nebo proti botům podle svých preferencí.
 
-### Inspirace pro vlastní návrh
+### Inspirace pro vlastní návrh (Aplikace 1,2)
 
 1. **Zjednodušené přihlášení**: Implementovat systém, který umožní hráčům připojit se k hře bez nutnosti registrace. Uživatelé by měli mít možnost rychle vytvořit herní místnost s unikátním kódem, což je efektivní způsob, jak začít hrát, inspirovaný aplikací Člobrdo.
 
@@ -170,7 +169,7 @@ TODO
 
 ### Klíčové částí FE
 #### Hlavní menu
-- **Input box pro kód hry** – pro připojení ke hře.
+- **Input box pro kód hry** – připojení ke hře.
 - **Tlačítka**:
   - **Připojit** – připojení ke hře po zadání kódu.
   - **Vytvořit** – vytvoření nové hry.
@@ -184,9 +183,9 @@ TODO
 - **Možnost spuštění hry pro hostitele** – hostitel má tlačítko pro spuštění hry.
 
 #### Herní plocha
-- **Virtuální herní deska** připomínající klasickou verzi hry s barevnými startovními poli, cílovými poli a cestou kolem dokola.
+- **Herní deska** - klasická verze hry s barevnými startovními poli, cílovými poli a cestou kolem dokola.
 - **Jména hráčů** – zobrazení jmen hráčů v rozích herní desky.
-- **Interaktivní kostka** – tlačítko pro hod kostkou, které náhodně vygeneruje číslo.
+- **Kostka** – tlačítko pro hod kostkou, které náhodně vygeneruje číslo.
 - **Figurky hráčů** – ikony figurek, které se pohybují po herní ploše podle hodnoty hodu.
 
 #### Overlay text
@@ -194,12 +193,13 @@ TODO
   - "Jsi na tahu" – indikace, že je řada daný hráči.
   - "Červená vyhodila zelenou" – upozornění na události ve hře.
   - "Zbývá 30s do konce tvého kola" – odpočítávání času na tah.
+  - "Ivan hodil číslo 6!"
 
 #### Konec hry a skóre
 - Po ukončení hry se zobrazí **tabulka s výsledky** a možnost tlačítko restartu hry nebo návratu na hlavní obrazovku.
 
 ### Rozdělení práce v týmu na FE
-Každý člen týmu bude vytvářet svůj frontend
+Každý člen týmu bude vytvářet svůj frontend.
 
 # Návrh
 
