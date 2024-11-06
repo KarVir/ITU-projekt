@@ -21,22 +21,24 @@ TODO: Možná více zkonkretizovat?
 ### Požadavky uživatele:
 
 #### Uživatel A
-Shromáždění do lobby před začátkem hry, v lobby vidět kdo bude hrát za jakou barvu. Pohled na desku ze shora (2D). Automatické přesouvání figurek (kliknutí na figurku a ona se posune na příslušné místo). Zobrazit upozornění a kostku (tlačítko pro hození), když je hráč na řadě. Výměnu herní desky považuje za důležitou. Nevyplňovat chybějící hráče boty. Na konci hry výsledná obrazovak s pořadím a výhercem.
+Shromáždění do lobby před začátkem hry, v lobby vidět kdo bude hrát za jakou barvu. Pohled na desku ze shora (2D). Automatické přesouvání figurek (kliknutí na figurku a ona se posune na příslušné místo). Zobrazit upozornění a kostku (tlačítko pro hození), když je hráč na řadě. Výměnu herní desky považuje za důležitou. Nevyplňovat chybějící hráče boty. Na konci hry výsledná obrazovka s pořadím a výhercem.
 
 #### Uživatel B
 Možnost vytvořit místnost (lobby) s kódem pro připojení ostatních hráčů. Tlačítko pro hození kostky. Manuální přesouvání figurky (označení figurky a kliknutí na cílové políčko). Časovač herního kola (časový limit pro hráče). Výměnu herní desky z klasické 2-4 na 5-6 nepovažuje vůbec za důležité. Ideálně mít možnost vyplnit zbylé hráče boty. Zobrazovat aktuální skóre. In-game chat.
 
 #### Uživatel C
-Možnost vidět ostatní hráče před začátkem hry, ale barvu přiřadit náhodně. Preferuje 3D pohled na herní desku, aby bylo vidět více detailů. Manuální přesouvání, kde hráč klikne na figurku a poté na cílové políčko pro přesun. Tlačítko pro hod kostkou vždy k dispozici, bez nutnosti čekat. Možnost výměny desky je výhodou, ale není zásadní.
-Chce možnost hrát i s boty, pokud nejsou dostupní všichni hráči. Preferuje stručný přehled výsledků,spíše rychlé zobrazeni pořadí. Také preferuje restartovat hru bez nutnosti vytvářet novou místnost(lobby).
+Možnost vidět ostatní hráče před začátkem hry, ale barvu přiřadit náhodně. Preferuje 3D pohled na herní desku, aby bylo vidět více detailů. Manuální přesouvání, kde hráč klikne na figurku a poté na cílové políčko pro přesun. Tlačítko pro manuální hod kostkou. Možnost výměny desky je výhodou, ale není zásadní.
+Chce možnost hrát i s boty, pokud nejsou dostupní všichni hráči. Preferuje stručný přehled výsledků, spíše rychlé zobrazeni pořadí. Také preferuje restartovat hru bez nutnosti vytvářet novou místnost (lobby).
 
 #### Uživatel D
-Uvítal by rychlé připojení do hry bez lobby. aby byla hra co nejrychhleji spuštěna. Je pro pohled shora(2D), aby se hra dala jednoduše ovládat a byla přehledná. Automatické přesouvání po kliknutí na figurku, což zrychlí tah. Kostka se hází automaticky, aby byla hra svižnější. Výměnu herní desky nepovažuje za důležité- stačí jedna pevná varianta desky. Nechce boty ani jiná Ai řešení, preferuje hru pouze s reálními hráči. Konec hry bez podrobného skóre, pouze vítěz, Nepotřebuje průběžné skóre během hry.
+Uvítal by rychlé připojení do hry bez lobby, aby byla hra co nejrychhleji spuštěna. Je pro pohled shora (2D), aby se hra dala jednoduše ovládat a byla přehledná. Automatické přesouvání po kliknutí na figurku, což zrychlí tah. Kostka se hází automaticky, aby byla hra svižnější. Výměnu herní desky nepovažuje za důležité - stačí jedna pevná varianta desky. Nechce boty ani jiná Ai řešení, preferuje hru pouze s reálními hráči. Konec hry bez podrobného skóre, pouze vítěz, Nepotřebuje průběžné skóre během hry.
 
 ### Shrnutí požadavků
 
+Jelikož různí uživatelé mají různé požadavky, rozhodli jsme se implementovat různá řešení, abychom je mezi sebou porovnali.
+
 #### 1. Lobby a připojení hráčů
-- **Lobby**: Většina uživatelů preferuje shromáždění do lobby před začátkem hry. Lobby má zobrazovat seznam hráčů a jejich zvolené barvy, případně barvu přiřadit náhodně se začátkem hry.
+- **Lobby**: Většina uživatelů preferuje shromáždění do lobby před začátkem hry. Lobby má zobrazovat seznam hráčů a jejich barvy, barvu přiřadit náhodně.
 - **Kód pro připojení**: Hráči se připojí po zadání kódu do stejné místnosti.
 - **Restart hry**: Uživatelé požadují možnost restartovat hru bez nutnosti vytvářet novou místnost.
 
@@ -45,12 +47,12 @@ Uvítal by rychlé připojení do hry bez lobby. aby byla hra co nejrychhleji sp
 - **Výměna herní desky**: Pro některé uživatele je možnost výměny herní desky důležitá, například varianta pro 5–6 hráčů oproti klasické desce pro 2–4 hráče. Jiní uživatelé tuto možnost nepovažují za zásadní a vystačí si s jednou pevnou verzí desky.
 
 #### 3. Pohyb figurek a házení kostkou
-- **Pohyb figurek**:
-  - **Automatický pohyb**: Preferovaný některými uživateli. Hráč klikne na figurku, která se automaticky přesune na příslušné místo na desce.
-  - **Manuální pohyb**: Požadovaný jinými uživateli. Hráč klikne na figurku a následně na cílové políčko pro přesun.
+- **Pohyb figurek (varianty řešení)**:
+  - **Automatický pohyb**: Preferovaný některými uživateli. Hráč klikne na figurku, která se automaticky přesune na příslušné místo na desce. (Adam Charvát)
+  - **Manuální pohyb**: Požadovaný jinými uživateli. Hráč klikne na figurku a následně na cílové políčko pro přesun. (Karolína Virágová)
 - **Házení kostkou**:
-  - **Manuální hod kostkou**: Uživatelé preferují mít tlačítko pro hod kostkou, které se zobrazí, když je hráč na řadě. Někteří požadují, aby tlačítko bylo vždy k dispozici.
-  - **Automatické házení kostkou**: Preferováno pro zrychlení hry. Kostka se automaticky vrhá, když je hráč na tahu.
+  - **Manuální hod kostkou**: Uživateli se zobrazí tlačítko pro hod kostky, když je na řadě, kostka je kliknutím vržena. (Adam Charvát)
+  - **Automatické házení kostkou**: Preferováno pro zrychlení hry. Kostka se automaticky vrhá, když je hráč na tahu. (Karolína Virágová)
 
 #### 4. Upozornění a časovač
 - **Upozornění pro hráče na tahu**: Notifikace a aktivní tlačítko pro hod kostkou, když je hráč na tahu.
