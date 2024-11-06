@@ -73,9 +73,18 @@ Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.h
 - přehledný 2D pohled s jasně označenými startovními a cílovými poli.
 - automatický pohyb figurek po kliknutí
 
+POZOR!!! - "pro a proti nesmí být obecné (aplikace má pěkný design, používají to všichni,
+apod.), ale zcela konkrétní pro klíčové požadavky vycházející z průzkumu
+požadavků uživatele"
+NOTE #1: Jako inspiraci bych použil automatický pohyb figurek vs manuální a nějak to okecal.
+NOTE #2: Klidně bych dal inspiraci, že se uživatelé nemusí přihlašovat/registrovat, aby mohli hrát, ale toto bych nijak nespojoval s kódem hry, který musí vyplnit téměř vždy.
+
 #### Nevýhody:
 - omezené možnosti interakce, chybí možnost chatu nebo přizpůsobení hry.
 - jednoduchá grafika a absence podrobnějších animací, což může být nevýhodou pro hráče hledající vizuální zážitek.
+
+POZOR> - radši bych vůbec nepoužíval slova grafika/animace/vizuální zážitek
+NOTE> Buď bych našel jinou aplikaci, nebo to nějak přepracoval...
 
 ### Aplikace 2: Člověče nezlob se
 Odkaz na aplikaci: https://www.vicko.cz/hry/online/clovece-nezlob-se/
@@ -92,6 +101,9 @@ Odkaz na aplikaci: https://www.vicko.cz/hry/online/clovece-nezlob-se/
 #### Nevýhody:
 - může být dlouhé čekání na nalezení náhodných hráčů.
 - grafika je jednoduchá, což může ovlivnit zážitek ze hry.
+
+Pozor: Opět grafika, přehledné rozhraní... a opakující se "bez nutnosti registrace"
+Tady bych určitě našel jinou aplikaci, jak jsme se bavili, která bude MULTIPLAYER.
 
 ### Aplikace 3: Člověče nezlob se - Multiplayer
 Odkaz na aplikaci: https://www.zahraj.cz/online-hra/lovee-nehnevaj-sa-multiplayer/
