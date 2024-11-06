@@ -367,6 +367,12 @@ response: {
 
 **Event** `game:start`\
 *Žádost o zahájení hry*
+```ts
+payload: {
+    // Zda vyplnit zbylé hráče boty
+    fillWithBots: boolean
+}
+```
 
 **Event** `game:play`\
 *Žádost o hození kostky - vygenerování náhodného čísla*
