@@ -200,12 +200,13 @@ TODO
 - **Kostka** – tlačítko pro hod kostkou, které náhodně vygeneruje číslo.
 - **Figurky hráčů** – ikony figurek, které se pohybují po herní ploše podle hodnoty hodu.
 
-#### Overlay text
-- **Stavová oznámení**:
+#### Stavová oznámení
   - "Jsi na tahu" – indikace, že je řada daný hráči.
   - "Červená vyhodila zelenou" – upozornění na události ve hře.
   - "Zbývá 30s do konce tvého kola" – odpočítávání času na tah.
   - "Ivan hodil číslo 6!"
+
+    *Stavová oznámení jsou realizována buď jako overlay text nebo top/bottom bar s textem.*
 
 #### Konec hry a skóre
 - Po ukončení hry se zobrazí **tabulka s výsledky** a možnost tlačítko restartu hry nebo návratu na hlavní obrazovku.
