@@ -238,7 +238,8 @@ Návrh Gui jsem dělala ve Figmě.
 
 
 ### Adam Charvát
-TODO!
+
+Návrh ve Figmě je vypracován v češtině, výsledná aplikace bude v angličtině.
 
 ## Výběr technologií
 ### Backend
