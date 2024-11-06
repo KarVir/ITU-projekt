@@ -149,6 +149,20 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 
 3. **Vylepšené interakce**: Zvažte implementaci funkcí, které by mohly zvýšit angažovanost hráčů a zábavnost herního zážitku. Mělo by se jednat o prvky, které hráčům umožní interakci a strategické plánování během hry. Včetně možnosti přizpůsobení herního prostředí nebo automatizace určitých aspektů hry, pokud není k dispozici dostatek hráčů. Například by bylo výhodné mít schopnost zaplnit herní místnost boty, pokud se nesejde plný počet hráčů, podobně jako to dělá aplikace Ludo Wizard Game.
 
+### Závěry z průzkumu (Aplikace 3,4)
+
+1. Díky průzkumu jsme přišli na další způsob vytvoření kódu místnosti, kdy uživatel vymyslí kód sám, může to být pro něj pohodlnější, ale také ne, záleží na provedení - v aplikaci to bylo řešené špatně, jelikož se objevil input field s nadpisem "Password", chvíli jsem nevěděl, co se po mně chce, až pak mi došlo, že si mám vymyslet heslo místnosti - stačilo tam napsat "Create Room/Invite Password".
+2. Hra s náhodnými hráči není pro "Člověče, nezlob se" vhodná. Navíc náš uživatel chce hrát se svými přáteli, takže pro nás nemá tento mód vůbec smysl. Na druhou stranu nám tento herní mód ukázal důležitost časovače herního kola, aby byla zachována plynulost hry.
+3. Jelikož náš uživatel bude chtít hrát s kamarády ze zahraničí, pak přichází do úvahy lokalizace a výměna herní desky. Zahraniční varianta desky "Člověče, nezlob se" (Ludo) může být pro některé uživatele nepřehledná a to samé se dá říci o té verzi, která je známá v ČR. Implementace client-side výměny desky za jinou variantu, by nebyla možná, protože používá jiný počet polí. Lokalizaci lze jednoduše vyřešit tak, že hra bude pouze v angličtině, uživatel, který má spoustu přátel v zahraničí s největší pravděpodobností bude umět anglicky.
+4. Bude lepší, když UI bude rozdělené do více částí, které na sebe logicky navazují, než aby se uživateli zobrazil formulář s 10 vyplňovacími poli.
+
+### Inspirace pro vlastní návrh (Aplikace 3,4)
+
+1. Každý zkusíme vyřešit jinou variantu vytvoření kódu místnosti:\
+Adam: kód je vygenerován serverem\
+Karolína: kód vymyslí a zadá uživatel
+2. Časovač herního kola pro hození kostky.
+3. Rozporcování UI na více obrazovek s jedním významem - např. obrazovka pro vyplnění přezdívky s tlačítkem "Pokračovat".
 
 ## Zadání
 ### Popis požadované cílové aplikace
