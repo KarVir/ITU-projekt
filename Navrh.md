@@ -142,7 +142,7 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 
 2. **Intuitivní uživatelské rozhraní**: 
    Obě aplikace mají přehledné rozhraní, které je snadné na orientaci. *Člobrdo* využívá automatické pohyby figurek, což šetří čas a zjednodušuje hru, zatímco *Člověče nezlob se* se zaměřuje na manuální pohyb figurek a jasné označení, kam mohou být umístěny. Důraz na jasnou vizualizaci tahů a zobrazení hráče na tahu je klíčovým prvkem, který zvyšuje přehlednost a usnadňuje hru.
-
+Z
 3. **Možnosti přizpůsobení a interakce**: 
    *Člobrdo* i *Člověče nezlob se* nabízejí možnosti přizpůsobení hry, ale oba mají určité limity v oblasti interakcí s ostatními hráči. *Člobrdo* umožňuje přepínání mezi hráči a boty, ale neumožňuje konkrétní volbu spoluhráčů, zatímco *Člověče nezlob se* nenabízí možnost více hráčů, pokud není registrace, což může být limitující. Obě aplikace by těžily z přidání možností pro volbu konkrétních spoluhráčů nebo chatování.
 
