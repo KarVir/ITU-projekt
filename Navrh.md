@@ -75,18 +75,9 @@ Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.h
 - Viditelnost hráče na tahu: Vlevo nahoře je zobrazeno, který hráč je na tahu, což pomáhá udržet přehled o aktuálním stavu hry.
 Jednoduché ovládání: Uživatelé nemusí složitě hledat, jak pokračovat, vše je intuitivně zobrazeno
 
-POZOR!!! - "pro a proti nesmí být obecné (aplikace má pěkný design, používají to všichni,
-apod.), ale zcela konkrétní pro klíčové požadavky vycházející z průzkumu
-požadavků uživatele"
-NOTE #1: Jako inspiraci bych použil automatický pohyb figurek vs manuální a nějak to okecal.
-NOTE #2: Klidně bych dal inspiraci, že se uživatelé nemusí přihlašovat/registrovat, aby mohli hrát, ale toto bych nijak nespojoval s kódem hry, který musí vyplnit téměř vždy.
-
 #### Nevýhody:
 - zmátlo mě možnost nastavení hry s boty nebo hráči, 
 - tlačítko pro manuální hod kostkou je malé a nastraně vedle desky. Já bych ho dala pod desku.
-
-POZOR> - radši bych vůbec nepoužíval slova grafika/animace/vizuální zážitek
-NOTE> Buď bych našel jinou aplikaci, nebo to nějak přepracoval...
 
 ### Aplikace 2: Člověče nezlob se
 Odkaz na aplikaci: https://www.zahraj.cz/online-hra/clovece-nehnevaj-sa/
@@ -104,8 +95,6 @@ Odkaz na aplikaci: https://www.zahraj.cz/online-hra/clovece-nehnevaj-sa/
 - není možnost nastavit pro více hráčů, hraju sama proti borům
 - do hry se není nutné registrovat, ale je to potřeba aby jsi neztratila aktuální hru když odejdeš
 
-Pozor: Opět grafika, přehledné rozhraní... a opakující se "bez nutnosti registrace"
-Tady bych určitě našel jinou aplikaci, jak jsme se bavili, která bude MULTIPLAYER.
 
 ### Aplikace 3: Člověče nezlob se - Multiplayer
 Odkaz na aplikaci: https://www.zahraj.cz/online-hra/lovee-nehnevaj-sa-multiplayer/
@@ -146,21 +135,27 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 - na jednom startovním poli může být více figurek od více hráčů (figurky se nevyhazují)
 - figurky jsou fantasy postavičky, které lze těžko od sebe rozeznat (není jasné od které barvy je která figurka)
 
-### Závěry z průzkumu (Aplikace 1,2)
+### Závěry z průzkumu (Aplikace 1 a 2)
 
-1. **Rychlý a snadný přístup**: Všechny aplikace umožňují rychlé připojení bez nutnosti registrace, což výrazně zvyšuje uživatelský komfort. Hráči preferují možnost okamžitě začít hru, a proto je důležité mít jednoduchý proces vytváření herních místností.
+1. **Rychlý a snadný přístup**: 
+   Obě aplikace (*Člobrdo* a *Člověče nezlob se*) umožňují rychlé připojení k hře bez nutnosti registrace, což zvyšuje komfort hráčů a usnadňuje okamžitý start. Uživatelé oceňují, že se mohou ihned zapojit do hry bez komplikací, což přispívá k lepšímu uživatelskému zážitku. Tento přístup by měl být kladně hodnocen a doporučen pro jakýkoliv budoucí vývoj.
 
-2. **Intuitivní uživatelské rozhraní**: Přehledné a jasné rozhraní je klíčové pro pozitivní herní zážitek. Uživatelé si cení jednoduchého designu, který umožňuje snadnou orientaci v herních mechanismech, včetně jasného označení startovních a cílových polí.
+2. **Intuitivní uživatelské rozhraní**: 
+   Obě aplikace mají přehledné rozhraní, které je snadné na orientaci. *Člobrdo* využívá automatické pohyby figurek, což šetří čas a zjednodušuje hru, zatímco *Člověče nezlob se* se zaměřuje na manuální pohyb figurek a jasné označení, kam mohou být umístěny. Důraz na jasnou vizualizaci tahů a zobrazení hráče na tahu je klíčovým prvkem, který zvyšuje přehlednost a usnadňuje hru.
 
-3. **Možnosti interakce a přizpůsobení**: Hráči hledají možnosti, jak hru personalizovat a komunikovat s ostatními. Nedostatek interakčních prvků, jako je chat nebo možnost výběru konkrétních spoluhráčů, snižuje atraktivitu. Hráči chtějí mít možnost hrát s přáteli nebo proti botům podle svých preferencí.
+3. **Možnosti přizpůsobení a interakce**: 
+   *Člobrdo* i *Člověče nezlob se* nabízejí možnosti přizpůsobení hry, ale oba mají určité limity v oblasti interakcí s ostatními hráči. *Člobrdo* umožňuje přepínání mezi hráči a boty, ale neumožňuje konkrétní volbu spoluhráčů, zatímco *Člověče nezlob se* nenabízí možnost více hráčů, pokud není registrace, což může být limitující. Obě aplikace by těžily z přidání možností pro volbu konkrétních spoluhráčů nebo chatování.
 
-### Inspirace pro vlastní návrh (Aplikace 1,2)
+### Inspirace pro vlastní návrh (Aplikace 1 a 2)
 
-1. **Zjednodušené přihlášení**: Implementovat systém, který umožní hráčům připojit se k hře bez nutnosti registrace. Uživatelé by měli mít možnost rychle vytvořit herní místnost s unikátním kódem, což je efektivní způsob, jak začít hrát, inspirovaný aplikací Člobrdo.
+1. **Zjednodušené přihlášení**: 
+   Implementovat systém pro rychlé připojení k hře, který nevyžaduje registraci, inspirovaný aplikací *Člobrdo*. Hráči by mohli okamžitě vstoupit do hry pomocí unikátního kódu, což je efektivní způsob, jak umožnit rychlé začátky bez zbytečných překážek.
 
-2. **Atraktivní a funkční uživatelské rozhraní**: Navrhnout uživatelské rozhraní s přehlednými ovládacími prvky a jasnými označeními. Důraz na grafiku by měl být na úrovni, která zaujme, ale zároveň nebude příliš složitá. Zároveň by mělo být možné přepínat mezi 2D a 3D pohledy, aby si hráči mohli vybrat preferovaný způsob zobrazení.
+2. **Atraktivní a funkční uživatelské rozhraní**: 
+   Navrhnout rozhraní, které bude přehledné a snadno ovladatelné. Mělo by být jasně označeno, jakým způsobem mohou hráči pokračovat v hře. Inspirací může být *Člobrdo*, kde automatické označení tahů a pohybů figurek přispívá k intuitivnímu hraní. Rovněž by bylo užitečné implementovat manuální pohyb figurek, jak je to u *Člověče nezlob se*, pro větší kontrolu hráčů nad hrou.
 
-3. **Vylepšené interakce**: Zvažte implementaci funkcí, které by mohly zvýšit angažovanost hráčů a zábavnost herního zážitku. Mělo by se jednat o prvky, které hráčům umožní interakci a strategické plánování během hry. Včetně možnosti přizpůsobení herního prostředí nebo automatizace určitých aspektů hry, pokud není k dispozici dostatek hráčů. Například by bylo výhodné mít schopnost zaplnit herní místnost boty, pokud se nesejde plný počet hráčů, podobně jako to dělá aplikace Ludo Wizard Game.
+3. **Vylepšené interakce**: 
+   Vylepšit interakci mezi hráči, a to buď prostřednictvím chatu, nebo možnosti přizpůsobit herní zážitek. Například u *Člobrdo* je možnost přepínat mezi boty a hráči, ale bylo by přínosné přidat volbu pro konkrétní spoluhráče, což zlepší sociální aspekt hry. Také je možné implementovat automatizované prvky, pokud není dostatek hráčů, podobně jako to dělá *Člobrdo*.
 
 ### Závěry z průzkumu (Aplikace 3,4)
 
@@ -264,7 +259,7 @@ Návrh Gui jsem dělala ve Figmě.
 
 | ![návrh](tmp/img5.png){ width=325px } |
 |---------------------------------------|
-| zobrazení výsledků, možnost hrát novou hru bez opuštění lobby nebo jít na hlavni stránku a tím se lobby opustí   |
+| Zobrazení výsledků, možnost hrát novou hru bez opuštění lobby nebo jít na hlavni stránku a tím se lobby opustí   |
 
 
 ### Adam Charvát
