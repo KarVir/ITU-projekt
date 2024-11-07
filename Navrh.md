@@ -7,10 +7,8 @@ geometry: "left=2cm, right=2cm, top=2.5cm, bottom=2.5cm"
 Naše aplikace se jmenuje: **Člověče, nezlob se! online s přáteli**
 
 ## Tým:  
-- Adam Charvát  
+## - Adam Charvát  
 - Karolína Virágová  
-
-TODO: Oznacit kapitana
 
 ## Uživatelský průzkum a specifikace
 Uživatel je člověk, který má rád deskové hry, ale má většinu přátel v zahraničí.
@@ -67,13 +65,15 @@ Jelikož různí uživatelé mají různé požadavky, rozhodli jsme se implemen
 Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.html
 
 #### Inspirace:
-- uživatelé nejsou nuceni přihlašovat se ani zadávat heslo pro vytvoření herní místnosti, což zrychluje zahájení hry.
-- jednoduchý design zaměřený na základní herní mechanismy.
+- Přeppínač mezi boty a hráči
+- Možnost hrát bez přihlašování, což usnadňuje přístup a okamžitý start.
 
 #### Výhody:
-- rychlé spuštění hry bez nutnosti registrace.
-- přehledný 2D pohled s jasně označenými startovními a cílovými poli.
-- automatický pohyb figurek po kliknutí
+- Okamžité spuštění bez registrace.
+- Automatické pohyby figurek šetří čas.
+- Jasné označení tahu: Když je hráč na řadě, figurky, kterými může pohnout, jsou označeny, což usnadňuje orientaci.
+- Viditelnost hráče na tahu: Vlevo nahoře je zobrazeno, který hráč je na tahu, což pomáhá udržet přehled o aktuálním stavu hry.
+Jednoduché ovládání: Uživatelé nemusí složitě hledat, jak pokračovat, vše je intuitivně zobrazeno
 
 POZOR!!! - "pro a proti nesmí být obecné (aplikace má pěkný design, používají to všichni,
 apod.), ale zcela konkrétní pro klíčové požadavky vycházející z průzkumu
@@ -82,27 +82,27 @@ NOTE #1: Jako inspiraci bych použil automatický pohyb figurek vs manuální a 
 NOTE #2: Klidně bych dal inspiraci, že se uživatelé nemusí přihlašovat/registrovat, aby mohli hrát, ale toto bych nijak nespojoval s kódem hry, který musí vyplnit téměř vždy.
 
 #### Nevýhody:
-- omezené možnosti interakce, chybí možnost chatu nebo přizpůsobení hry.
-- jednoduchá grafika a absence podrobnějších animací, což může být nevýhodou pro hráče hledající vizuální zážitek.
+- zmátlo mě možnost nastavení hry s boty nebo hráči, 
+- tlačítko pro manuální hod kostkou je malé a nastraně vedle desky. Já bych ho dala pod desku.
 
 POZOR> - radši bych vůbec nepoužíval slova grafika/animace/vizuální zážitek
 NOTE> Buď bych našel jinou aplikaci, nebo to nějak přepracoval...
 
 ### Aplikace 2: Člověče nezlob se
-Odkaz na aplikaci: https://www.vicko.cz/hry/online/clovece-nezlob-se/
+Odkaz na aplikaci: https://www.zahraj.cz/online-hra/clovece-nehnevaj-sa/
 
 #### Inspirace:
-- snadný přístup k online hře bez nutnosti registrace.
-- možnost hrát proti botům i živým hráčům v jedné hře.
+- manuální pohyb figurek namísto automatického
+- zobrazení obrysu figurky
 
 #### Výhody:
-- rychlá a intuitivní hratelnost.
-- přehledné rozhraní a jasná pravidla.
-- podpora různých herních režimů.
+- kostka zobrazena v pravém rohu, panel u hrací desky ukazuje hodnoty hodu, každého hráče
+- zobrazení, že je daný hráč na řadě
+- při manualním pohybu je zobrazena obrys figurky, kam ji může hráč umístit
 
 #### Nevýhody:
-- může být dlouhé čekání na nalezení náhodných hráčů.
-- grafika je jednoduchá, což může ovlivnit zážitek ze hry.
+- není možnost nastavit pro více hráčů, hraju sama proti borům
+- do hry se není nutné registrovat, ale je to potřeba aby jsi neztratila aktuální hru když odejdeš
 
 Pozor: Opět grafika, přehledné rozhraní... a opakující se "bez nutnosti registrace"
 Tady bych určitě našel jinou aplikaci, jak jsme se bavili, která bude MULTIPLAYER.
@@ -179,7 +179,37 @@ Karolína: kód vymyslí a zadá uživatel
 
 ## Zadání
 ### Popis požadované cílové aplikace
-TODO
+Cílem aplikace je vytvořit online hru s figurkami a hrací kostkou, která umožňuje interakci mezi hráči v místnosti (roomce). Aplikace bude poskytovat herní rozhraní, ve kterém se hráči mohou připojit do místnosti, provádět tahy s figurkami.
+
+Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kombinací dvou různých přístupů k ovládání herních prvků.
+
+#### Člen 1: Automatický pohyb figurky a manuální hod kostkou
+
+1. **Automatický pohyb figurky**:
+   - Po provedení hodu kostkou figurka automaticky vykoná tah podle hodnoty hozeného čísla. Tento tah vypočítá a provede aplikace sama, bez nutnosti uživatelského zásahu.
+   - Backend obdrží hodnotu z kostky a určí novou pozici figurky podle pravidel hry. React (frontend) pak zobrazí aktuální pozici.
+
+2. **Manuální hod kostkou**:
+   - Hráč má v uživatelském rozhraní tlačítko „Hod kostkou“, které po stisknutí vygeneruje náhodné číslo (1-6).
+   - Výsledná hodnota z kostky se následně zobrazí hráči a posune figurku o příslušný počet políček.
+
+3. **Heslo do místnosti generované serverem**:
+   - Při zakládání nové herní místnosti (roomky) je heslo do místnosti automaticky vygenerováno na straně backendu. Tím je zajištěno, že každá místnost má unikátní a bezpečné heslo.
+   - Po vytvoření místnosti backend pošle heslo zpět uživateli, který ho může sdílet s dalšími hráči.
+
+#### Člen 2: Manuální pohyb figurky a automatický hod kostkou
+
+1. **Manuální pohyb figurky**:
+   - Hráč může s figurkou pohybovat ručně po herní desce. Například může po hodu kostkou kliknout na figurku a přetáhnout ji na nové místo na základě hodu.
+   - Aplikace může zkontrolovat, zda je tah platný, a případně upravit pohyb figurky na základě pravidel hry.
+
+2. **Automatický hod kostkou**:
+   - Aplikace při každém tahu sama automaticky vygeneruje hodnotu hodu kostkou (1-6), aniž by hráč musel kostkou házet manuálně.
+   - Hráč obdrží výsledek hodu a může podle něj provést manuální pohyb figurky.
+
+3. **Ruční zadání hesla do místnosti**:
+   - Když hráč vytváří místnost, může si sám nastavit heslo pro přístup. Toto heslo zadá ručně a aplikace zajistí, že zadané heslo odpovídá bezpečnostním požadavkům.
+   - Tímto heslem pak hráč zabezpečí svou místnost a sdílí ho s ostatními, kteří se chtějí připojit.
 
 ### Klíčové částí FE
 #### Hlavní menu
@@ -226,15 +256,15 @@ Návrh Gui jsem dělala ve Figmě.
 
 | ![návrh](tmp/img.png){ width=325px } | ![návrh](tmp/img2.png){ width=325px } |
 |---------------------------------------|---------------------------------------|
-| *Popis obrázku 1*                     | *Popis obrázku 2*                     |
+| * Hlavni obrazovka*                     | *Zadání přezdívky*                     |
 
 | ![návrh](tmp/img3.png){ width=325px } | ![návrh](tmp/img4.png){ width=325px } |
 |---------------------------------------|---------------------------------------|
-| *Popis obrázku 1*                     | *Popis obrázku 2*                     |
+| *Lobby, čekání na připojení ostatních hráčů a tlačítko pro zhájení hry*  | *Hrací deska s figurkami, zobrazují se jména hráčů*   |
 
 | ![návrh](tmp/img5.png){ width=325px } |
 |---------------------------------------|
-| *Popis obrázku 1*                     |
+| zobrazení výsledků, možnost hrát novou hru bez opuštění lobby nebo jít na hlavni stránku a tím se lobby opustí   |
 
 
 ### Adam Charvát
@@ -461,3 +491,35 @@ data: {
 
 /synchronize request
 
+
+### Napojení FE na BE (GUI na API)
+V rámci mého projektu zaměřeného na implementaci deskové hry jsem navrhl architekturu, která spojuje front-end (FE) napsaný v Reactu s back-endem (BE) implementovaným v Pythonu pomocí Flasku. Tato dokumentace popisuje, jak jednotlivé API endpointy spolupracují s uživatelským rozhraním.
+
+#### 1. React
+- **API Endpoint**: `GET /`
+- **Účel**: Tento endpoint vrací aktuální stav hry, což zahrnuje informace o pozicích hráčů a jejich herních figurách. Tato data jsou nezbytná pro správné zobrazení herního plánu v uživatelském rozhraní.
+- **Vstup**: Žádný (endpoint je volán při načtení stránky).
+- **Výstup**: JSON objekt, který obsahuje:
+  - `colors`: Pole barev figur jednotlivých hráčů.
+  - `starts`: Pozice figur v startovním poli.
+  - `houses`: Pozice figur v domech.
+  - `pieces`: Aktuální pozice figur na herním plánu.
+- **Neimplementováno**: Aktuální implementace nemá robustní logiku pro správu stavu hry a aktualizaci pozic figur. Je třeba zajistit, aby se správně zobrazovaly všechny relevantní informace a aby se správně aktualizoval stav po každém tahu.
+
+
+#### 3. Zpracování pohybu herní figurky
+- **API Endpoint**: `POST /move`
+- **Účel**: Tento endpoint zpracovává pohyb herní figurky na základě vstupních dat z front-endu. Umožňuje hráči posunout svou figurku na herním plánu.
+- **Vstup**: JSON objekt, který obsahuje:
+  - `pieceIndex`: Index vybrané figurky.
+  - `targetPosition`: Cílová pozice na herním plánu, na kterou se má figurka přesunout.
+  - `diceValue`: Hodnota kostky, která určuje, kolik polí se může figura posunout.
+- **Výstup**: Aktualizovaný stav hry (stejný jako na endpointu `/`) nebo chybové hlášení v případě neplatného pohybu.
+- **Neimplementováno**: Kontrola platnosti pohybu není dostatečně robustní. Je nutné implementovat více pravidel pro ověření, zda je pohyb legální podle pravidel hry.
+
+#### 3. Resetování hry
+- **API Endpoint**: `POST /reset`
+- **Účel**: Tento endpoint obnoví hru na výchozí stav a připraví nové hráče na začátek nové hry.
+- **Vstup**: Žádný (volání se provádí kliknutím na tlačítko pro reset).
+- **Výstup**: JSON objekt, který vrací aktuální stav hry po resetu, obdobný jako na endpointu `/`.
+- **Neimplementováno**: Logika pro správnou inicializaci hráčů a herního stavu nebyla plně testována. Je nutné ověřit, že se všichni hráči správně přidávají a připravují na hru.
