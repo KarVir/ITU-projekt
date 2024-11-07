@@ -273,10 +273,12 @@ interface Player {
 ```ts
 interface Piece {
     // ID hráče, který vlastní figurku
-    ownerId: number, // Player.id
-    // Pozice vzhledem k celkové cestě, kterou musí figurka ujít
-    // Pokud je pozice null, pak figurka ještě nebyla umístěna na herní desku
-    // Pokud je pozice >= Game.commonLength, pak je figurka v domečku
+    ownerId: number; // Player.id
+    // Barva figurky, stejná jako Player.color
+    color: string;
+    // Pozice vzhledem k celkové cestě, kterou musí figurka ujít,
+    // pokud je pozice null, pak figurka ještě nebyla umístěna na herní desku,
+    // pokud je pozice >= Game.commonLength, pak je figurka v domečku
     position: number | null;
     // Pozice v rámci společného místa herní desky,
     // pokud je společná pozice null, figurka ještě nebyla umístěna na herní desku, nebo je v domečku
@@ -294,10 +296,10 @@ interface Game {
         // Maximální počet hráčů
         maxPlayers: number,
         // Figurky
-        pieces: [Piece],
+        pieces: Piece[],
     },
     // Hráči v místnosti
-    players: [Player],
+    players: Player[],
     // Hráč, který je na tahu
     nextPlayerId: number // Player.id
 }
@@ -325,12 +327,19 @@ Event `disconnect`
 
 Události jsou vyvolávané voláním funkce `emit(eventName, payload, callback)`. Klient dostane `response` jako argument callbacku.
 
+`payload` = *data, která posíláme na server*\
+`response` = *data, která server zašle zpátky jako odpověď*
+
+V případě chyby pošle server číselný atribut `error` v objektu `response`. Žádné další atributy v tomto případě `response` nemá.
+
 **Event** `session:create`\
 *Vytvoření místnosti (lobby)*
 ```ts
 payload: {
-    // přezdívka vlastníka místnosti
-    name: string
+    // Přezdívka vlastníka místnosti
+    name: string;
+    // Vlastní klíč místnosti (nemusí být uveden)
+    key: string | undefined;
 }
 
 response: {
@@ -342,6 +351,7 @@ response: {
     players: Player[]
 }
 ```
+Pošle `error`, pokud je specifikován `key` v `payload` a session se stejným klíčem již existuje.
 
 **Event** `session:join`\
 *Žádost o připojení do místnosti*
@@ -364,6 +374,7 @@ response: {
     players: Player[]
 }
 ```
+Pošle `error`, pokud je `key` neexistuje.
 
 **Event** `game:start`\
 *Žádost o zahájení hry*
@@ -413,10 +424,14 @@ data: Game
 **Event** `game:diceRolled`\
 *Oznámení všem v místnosti, že hráč hodil kostku*
 ```ts
-// ID hráče, který hodil kostku
-playerId: number,
-// Číslo 1 - 6
-dice: number
+data: {
+    // ID hráče, který hodil kostku
+    playerId: number;
+    // Číslo 1 - 6
+    dice: number;
+    // Pokud padlo číslo 6, může hráč umístit novou figurku na desku.
+    canDeploy: boolean;
+}
 ```
 
 **Event** `game:updated`\
@@ -433,11 +448,12 @@ data: {
 ```
 
 **Event** `game:ended`\
-*Žádost všem klientům o upravení datového modelu hry*\
-Room[all Clients] <- Server
+*Oznámení o tom, že hra skončila*
 ```ts
 data: {
-
+    score: [
+        
+    ]
 }
 ```
 
