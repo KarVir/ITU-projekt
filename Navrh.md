@@ -288,71 +288,71 @@ Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:
 #### Player
 ```ts
 interface Player {
-    // Unikátní identifikátor hráče
-    id: number;
-    // Přezdívka hráče
-    name: string;
-    // Barva - red, green, blue, yellow
-    // (barvy jsou přiřazovány hráčům náhodně)
-    color: string;
+  // Unikátní identifikátor hráče
+  id: number;
+  // Přezdívka hráče
+  name: string;
+  // Barva - red, green, blue, yellow
+  // (barvy jsou přiřazovány hráčům náhodně)
+  color: string;
 }
 ```
 #### Piece
 ```ts
 interface Piece {
-    // Unikátní identifikátor figurky
-    id: number;
-    // ID hráče, který vlastní figurku
-    ownerId: number; // Player.id
-    // Barva figurky, stejná jako Player.color
-    color: string;
-    // Pozice vzhledem k celkové cestě, kterou musí figurka ujít,
-    // pokud je pozice null, pak figurka ještě nebyla umístěna na herní desku,
-    // pokud je pozice >= Game.commonLength, pak je figurka v domečku
-    position: number | null;
-    // Pozice v rámci společného místa herní desky,
-    // pokud je společná pozice null, figurka ještě nebyla umístěna na herní desku, nebo je v domečku
-    commonPosition: number | null;
+  // Unikátní identifikátor figurky
+  id: number;
+  // ID hráče, který vlastní figurku
+  ownerId: number; // Player.id
+  // Barva figurky, stejná jako Player.color
+  color: string;
+  // Pozice vzhledem k celkové cestě, kterou musí figurka ujít,
+  // pokud je pozice null, pak figurka ještě nebyla umístěna na herní desku,
+  // pokud je pozice >= Game.commonLength, pak je figurka v domečku
+  position: number | null;
+  // Pozice v rámci společného místa herní desky,
+  // pokud je společná pozice null, figurka ještě nebyla umístěna na herní desku, nebo je v domečku
+  commonPosition: number | null;
 }
 ```
 #### Game
 ```ts
 interface Game {
-    board: {
-        /* Délka společného místa na desce, klasicky 40 polí */
-        commonLength: number;
-        /* Délka domečku, klasicky 4 pole */
-        houseLength: number;
-        // Maximální počet hráčů
-        maxPlayers: number;
-        // Figurky
-        pieces: Piece[];
-    },
-    // Hráči v místnosti
-    players: Player[];
-    // Hráč, který je na tahu
-    nextPlayerId: number; // Player.id
+  board: {
+    /* Délka společného místa na desce, klasicky 40 polí */
+    commonLength: number;
+    /* Délka domečku, klasicky 4 pole */
+    houseLength: number;
+    // Maximální počet hráčů
+    maxPlayers: number;
+    // Figurky
+    pieces: Piece[];
+  },
+  // Hráči v místnosti
+  players: Player[];
+  // Hráč, který je na tahu
+  nextPlayerId: number; // Player.id
 }
 ```
 
 #### Collision Info
 ```ts
 interface CollisionInfo {
-    // 'kicked': Figurka byla vyhozena
-    // 'denied': Figurce byl zamítnut pohyb
-    //  (např. nelze vyhodit vlastní figurku v domečku)
-    action: 'kicked' | 'denied';
-    // 'kicked': Společná pozice, na které nastala kolize
-    // 'denied':
-    //    >= 40 (pozice v domečku, která je obsazená)
-    //    < 40  (společná pozice, která je obsazená)
-    position: number;
-    // 'kicked': Figurka, kterou je potřeba aktualizovat
-    // 'denied': Žádná změna (stejná figurka)
-    piece: Piece;
-    // 'kicked': Hráč, který kolizi způsobil a vyhodil jinou figurku
-    // 'denied': Hráč, jehož figurce byla odmítnuta změna pozice
-    issuedById: number; // Player.id
+  // 'kicked': Figurka byla vyhozena
+  // 'denied': Figurce byl zamítnut pohyb
+  //  (např. nelze vyhodit vlastní figurku v domečku)
+  action: 'kicked' | 'denied';
+  // 'kicked': Společná pozice, na které nastala kolize
+  // 'denied':
+  //    >= 40 (pozice v domečku, která je obsazená)
+  //    < 40  (společná pozice, která je obsazená)
+  position: number;
+  // 'kicked': Figurka, kterou je potřeba aktualizovat
+  // 'denied': Žádná změna (stejná figurka)
+  piece: Piece;
+  // 'kicked': Hráč, který kolizi způsobil a vyhodil jinou figurku
+  // 'denied': Hráč, jehož figurce byla odmítnuta změna pozice
+  issuedById: number; // Player.id
 }
 ```
 
@@ -364,10 +364,10 @@ V závislosti na verzi pravidel, je možné řešit kolizi:
 
 ```ts
 interface ScoreRecord {
-    // ID hráče
-    playerId: number;
-    // Hodnota figurek v domečku
-    value: number;
+  // ID hráče
+  playerId: number;
+  // Hodnota figurek v domečku
+  value: number;
 }
 ```
 
@@ -392,19 +392,19 @@ V případě chyby pošle server číselný atribut `error` v objektu `response`
 *Vytvoření místnosti (lobby)*
 ```ts
 payload: {
-    // Přezdívka vlastníka místnosti
-    name: string;
-    // Vlastní klíč místnosti (nemusí být uveden)
-    key: string | undefined;
+  // Přezdívka vlastníka místnosti
+  name: string;
+  // Vlastní klíč místnosti (nemusí být uveden)
+  key: string | undefined;
 }
 
 response: {
-    // Klíč k nově vytvořené místnosti
-    key: string;
-    // Vlastník místnosti
-    owner: Player;
-    // Klienti v místnosti (zatím jen jeden)
-    players: Player[];
+  // Klíč k nově vytvořené místnosti
+  key: string;
+  // Vlastník místnosti
+  owner: Player;
+  // Klienti v místnosti (zatím jen jeden)
+  players: Player[];
 }
 ```
 Pošle `error`, pokud je specifikován `key` v `payload` a session se stejným klíčem již existuje.
@@ -413,21 +413,21 @@ Pošle `error`, pokud je specifikován `key` v `payload` a session se stejným k
 *Žádost o připojení do místnosti*
 ```ts
 payload: {
-    // Klíč k místnosti
-    key: string;
-    // Přezdívka připojujícího se klienta
-    name: string;
+  // Klíč k místnosti
+  key: string;
+  // Přezdívka připojujícího se klienta
+  name: string;
 }
 
 response: {
-    // Klíč k místnosti
-    key: string;
-    // Vlastník místnosti
-    owner: Player;
-    // Nově připojený hráč
-    me: Player;
-    // Aktuálně připojení klienti ve stejné místnosti
-    players: Player[];
+  // Klíč k místnosti
+  key: string;
+  // Vlastník místnosti
+  owner: Player;
+  // Nově připojený hráč
+  me: Player;
+  // Aktuálně připojení klienti ve stejné místnosti
+  players: Player[];
 }
 ```
 Pošle `error`, pokud je `key` neexistuje.
@@ -436,8 +436,8 @@ Pošle `error`, pokud je `key` neexistuje.
 *Žádost o zahájení nebo restart hry*
 ```ts
 payload: {
-    // Zda vyplnit zbylé hráče boty
-    fillWithBots: boolean;
+  // Zda vyplnit zbylé hráče boty
+  fillWithBots: boolean;
 }
 ```
 
@@ -448,8 +448,8 @@ payload: {
 *Žádost o pohnutí figurky*
 ```ts
 payload: {
-    // Společná pozice figurky, s kterou se má pohnout
-    commonPosition: number;
+  // Společná pozice figurky, s kterou se má pohnout
+  commonPosition: number;
 }
 ```
 
@@ -480,12 +480,12 @@ data: Game
 *Oznámení všem v místnosti, že hráč hodil kostku*
 ```ts
 data: {
-    // ID hráče, který hodil kostku
-    playerId: number;
-    // Číslo 1 - 6
-    dice: number;
-    // Pokud padlo číslo 6, může hráč umístit novou figurku na desku.
-    canDeploy: boolean;
+  // ID hráče, který hodil kostku
+  playerId: number;
+  // Číslo 1 - 6
+  dice: number;
+  // Pokud padlo číslo 6, může hráč umístit novou figurku na desku.
+  canDeploy: boolean;
 }
 ```
 
@@ -493,16 +493,16 @@ data: {
 *Žádost všem klientům o upravení datového modelu hry*
 ```ts
 data: {
-    // Informace o kolizi, pokud nastala
-    //   V případě kolize typu 'kicked',
-    //   obsahuje informace o další figurce,
-    //   kterou je potřeba aktualizovat
-    //   (CollisionInfo.piece)
-    collision: CollisionInfo | null;
-    // Aktualizovaná figurka, kterou je potřeba nahradit v datovém modelu
-    updatedPiece: Piece;
-    // Další hráč na tahu
-    nextPlayerId: number;
+  // Informace o kolizi, pokud nastala
+  //   V případě kolize typu 'kicked',
+  //   obsahuje informace o další figurce,
+  //   kterou je potřeba aktualizovat
+  //   (CollisionInfo.piece)
+  collision: CollisionInfo | null;
+  // Aktualizovaná figurka, kterou je potřeba nahradit v datovém modelu
+  updatedPiece: Piece;
+  // Další hráč na tahu
+  nextPlayerId: number;
 }
 ```
 
@@ -510,10 +510,10 @@ data: {
 *Oznámení o tom, že hra skončila*
 ```ts
 data: {
-    // Informace o skóre každého hráče
-    score: ScoreRecord[];
-    /* Délka domečku, klasicky 4 pole */
-    houseLength: number;
+  // Informace o skóre každého hráče
+  score: ScoreRecord[];
+  /* Délka domečku, klasicky 4 pole */
+  houseLength: number;
 }
 ```
 
