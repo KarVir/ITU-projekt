@@ -272,17 +272,25 @@ Odkaz na Figmu: https://www.figma.com/design/rd0f0rpoLtBvGV09cXrDkW/ITU-projekt?
 |---------------------------------------|---------------------------------------|
 | *Úvodní obrazovka* | *Zadání přezdívky* |
 
+Požadavek uživatele: "Možnost vytvořit místnost (lobby) s kódem pro připojení ostatních hráčů." Také je zde promítnuto rozporcování UI z průzkumu existujících řešení, kdy každá obrazovka má jeden význam.
+
 | ![návrh](tmp/LobbyHost.png){ width=325px } |![návrh](tmp/LobbyClient.png){ width=325px } |
 |---------------------------------------|---------------------------------------|
 | *Lobby z pohledu majitele/tvůrce místnosti* | *Lobby z pohledu připojeného hráče* |
+
+Uživatelský požadavek: "Shromáždění do lobby před začátkem hry, **v lobby vidět kdo bude hrát za jakou barvu**."
 
 | ![návrh](tmp/LobbyHostBots.png){ width=325px } |
 |---------------------------------------|
 | *Lobby z pohledu majitele místnosti v případě, že není dostatek hráčů* |
 
+Uživatelský požadavek: "Ideálně mít možnost vyplnit zbylé hráče boty." a "Nevyplňovat chybějící hráče boty." - *výsledkem je přepínač*
+
 | ![návrh](tmp/GameFirstTurn.png){ width=325px } |![návrh](tmp/GameDiceRolled.png){ width=325px } |
 |---------------------------------------|---------------------------------------|
 | *Začátek hry u hráče, který je právě na tahu* | *Začátek hry po hození kostkou a pohybu figurkou* |
+
+Uživatelský požadavek: "Časovač herního kola (časový limit pro hráče)." a "Zobrazit **upozornění a kostku** (tlačítko pro hození), když je hráč na řadě." - *upozornění je v bottom baru*
 
 | ![návrh](tmp/GameSecondTurn.png){ width=325px } |![návrh](tmp/GameEnded.png){ width=325px } |
 |---------------------------------------|---------------------------------------|
@@ -291,6 +299,8 @@ Odkaz na Figmu: https://www.figma.com/design/rd0f0rpoLtBvGV09cXrDkW/ITU-projekt?
 | ![návrh](tmp/GameResultScreen.png){ width=325px } |
 |---------------------------------------|
 | *Výsledková tabulka, kde je vidět výherce a kolik figurek se podařilo dostat do domečku. Také jsou zde tlačítka pro novou hru bez zakládání místnosti (jak vyplývá z uživatelských požadavků) a taky tlačítko pro hlavní nabídku.* |
+
+Tato obrazovka splňuje uživatelský požadavek => "Na konci hry výsledná obrazovka s **pořadím a výhercem**." a "Také preferuje restartovat hru bez nutnosti vytvářet novou místnost (lobby)."
 
 ## Výběr technologií
 ### Backend
