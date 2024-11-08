@@ -307,6 +307,8 @@ Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:
 - Adam Charvát: Angular
 - Karolína Virágová: React
 
+Angular a React jsou moderní webové frameworky, které jsou založené na principu zabalení jednotlivých částí webových stránek a funkctionalit do komponentů a jejich znovupoužití.
+
 ## Návrh API k BE
 
 ### Datové struktury
