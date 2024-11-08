@@ -14,8 +14,6 @@ Naše aplikace se jmenuje: **Člověče, nezlob se! online s přáteli**
 Uživatel je člověk, který má rád deskové hry, ale má většinu přátel v zahraničí.
 Chce si s nějakým takovým kamarádem zahrát Člověče, nezlob se! online přes internet.
 
-TODO: Možná více zkonkretizovat?
-
 ### Požadavky uživatele:
 
 #### Uživatel A
