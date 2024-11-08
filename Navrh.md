@@ -26,10 +26,10 @@ Možnost vytvořit místnost (lobby) s kódem pro připojení ostatních hráč�
 
 #### Uživatel C
 Možnost vidět ostatní hráče před začátkem hry, ale barvu přiřadit náhodně. Preferuje 3D pohled na herní desku, aby bylo vidět více detailů. Manuální přesouvání, kde hráč klikne na figurku a poté na cílové políčko pro přesun. Tlačítko pro manuální hod kostkou. Možnost výměny desky je výhodou, ale není zásadní.
-Chce možnost hrát i s boty, pokud nejsou dostupní všichni hráči. Preferuje stručný přehled výsledků, spíše rychlé zobrazeni pořadí. Také preferuje restartovat hru bez nutnosti vytvářet novou místnost (lobby).
+Chce možnost hrát i s boty, pokud nejsou dostupní všichni hráči. Preferuje stručný přehled výsledků, spíše rychlé zobrazení pořadí. Také preferuje restartovat hru bez nutnosti vytvářet novou místnost (lobby).
 
 #### Uživatel D
-Uvítal by rychlé připojení do hry bez lobby, aby byla hra co nejrychhleji spuštěna. Je pro pohled shora (2D), aby se hra dala jednoduše ovládat a byla přehledná. Automatické přesouvání po kliknutí na figurku, což zrychlí tah. Kostka se hází automaticky, aby byla hra svižnější. Výměnu herní desky nepovažuje za důležité - stačí jedna pevná varianta desky. Nechce boty ani jiná Ai řešení, preferuje hru pouze s reálními hráči. Konec hry bez podrobného skóre, pouze vítěz, Nepotřebuje průběžné skóre během hry.
+Uvítal by rychlé připojení do hry bez lobby, aby byla hra co nejrychhleji spuštěna. Je pro pohled shora (2D), aby se hra dala jednoduše ovládat a byla přehledná. Automatické přesouvání po kliknutí na figurku, což zrychlí tah. Kostka se hází automaticky, aby byla hra svižnější. Výměnu herní desky nepovažuje za důležité - stačí jedna pevná varianta desky. Nechce boty ani jiná AI řešení, preferuje hru pouze s reálními hráči. Konec hry bez podrobného skóre, pouze vítěz, Nepotřebuje průběžné skóre během hry.
 
 ### Shrnutí požadavků
 
@@ -293,6 +293,7 @@ interface Player {
     // Přezdívka hráče
     name: string,
     // Barva - red, green, blue, yellow
+    // (barvy jsou přiřazovány hráčům náhodně)
     color: string
 }
 ```
@@ -404,7 +405,7 @@ response: {
 Pošle `error`, pokud je `key` neexistuje.
 
 **Event** `game:start`\
-*Žádost o zahájení hry*
+*Žádost o zahájení nebo restart hry*
 ```ts
 payload: {
     // Zda vyplnit zbylé hráče boty
@@ -491,7 +492,7 @@ data: {
 
 ### Napojení FE na BE (GUI na API)  
 
-#### 1. FE react    
+#### 1. React
 
 **Vytvoření místnosti**
 
@@ -555,3 +556,42 @@ Frontend obdrží událost `game:diceRolled`, aktualizuje zobrazení hodnoty hod
 - **Event**: `session:create` nebo specifická resetovací událost, pokud je implementována
 - **Vstupní data**: `{ key: <identifikátor místnosti>, name: <jméno hráče> }`
 - **Odpověď serveru**: Server vrátí klíč nové nebo obnovené herní session, případně další potřebné informace, aby se hra mohla znovu načíst na frontendu.
+
+#### 2. Angular
+
+**Lobby**
+
+Event `session:create` nebo `session:join` dodá prvku `LobbyComponent` úvodní data k zobrazení.
+Tyto události jsou na straně klienta vyvolány a zaslány backendu v reakci na kliknutí uživatele:
+- Tlačítko "Připojit se do hry": `session:join`
+- Tlačítko "Vytvořit hru": `session:create`
+
+Úvodní data se dále aktualizují v reakci na `session:joined`, kdy server pošle data nově připojeného hráče.
+
+Tlačítko majitele místnosti "Zahájit hru", po kliknutí na toto tlačítko je vyvolána událost `game:start`.
+
+**Herní deska**
+
+Úvodní data do prvku `BoardComponent` se načtou posloucháním a čekáním na událost `game:started`, kdy server pošle všem klientům `Game` data (popsaná výše).
+
+Podle toho, kdo je na tahu, má přístup k tlačítku kostky, toto tlačítko vyvolá událost `game:play`.
+
+Backend událost vyhodnotí a pošle všem klientům `game:diceRolled` s hodnotou kostky, která byla vržena a její hodnota vygenerována. Hodnota kostky se zobrazí v GUI na kostce.
+
+Hráč, který kostkou hodil, pokud mu padla šestka, pak má 2 možnosti:
+- Umístit na desku novou figurku, kliknutím na figurku se pošle event `game:deployPiece`
+- Pohnout s libovolnou figurkou, která už je na desce, kliknutím na figurku se pošle event `game:movePiece`.
+
+Pokud hráč šestku nehodil, pak má pouze možnost pohnout s figurkou, která už je na desce. Pokud nemá na desce žádnou figurku, pak pošle `game:deployPiece`, který mu backend zamítne.
+
+Backend by neměl automaticky vyhodnotit, že hráč nehodil šestku a nemá žádnou figurku na desce, s kterou by mohl pohnout, a tak přepnout na dalšího hráče a poslat `game:updated`. Narušovalo by to plynulost hry, kdy GUI by nemusely stíhat zobrazovat hodnotu kostky.
+
+Backend v reakci na následující události rozešle všem broadcast `game:updated`, který obsahuje aktualizovanou figurku, která se změnila. Může také obsahovat kolizi, která obsahuje další aktualizovanou figurku, která se díky kolizi přesunula na začátek (pouze v případě `action = kicked`). GUI je zodpovědné za aktualizaci svého datového modelu těmito hodnotami.
+
+Pokud klient v dostatečné době (např. 30s) nezašle `game:play`, `game:movePiece`, `game:deployPiece`, pak backend automaticky zašle `game:updated` a na tahu je další hráč. Hodnotu časovače GUI obdrží společně s `nextPlayerId`.
+
+Když backend identifikuje výherce, rozešle všem `game:ended` obsahující výsledné skóre, které GUI zobrazí ve výsledkové tabulce.
+
+Ve výsledkové tabulce jsou tlačítka:
+- "Hrát znovu", kliknutí vyvolá událost `game:start`
+- "Návrat do lobby", kliknutím vyvolá událost `session:leave`
