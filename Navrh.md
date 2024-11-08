@@ -256,14 +256,21 @@ Návrh je vypracován ve Figmě.
 |---------------------------------------|---------------------------------------|
 | *Hlavní obrazovka*                     | *Zadání přezdívky*                     |
 
-| ![návrh](tmp/img3.png){ width=325px } | ![návrh](tmp/img4.png){ width=325px } |
-|---------------------------------------|---------------------------------------|
-| *Lobby, čekání na připojení ostatních hráčů a tlačítko pro zhájení hry*  | *Hrací deska s figurkami, zobrazují se jména hráčů*   |
+Požadavek uživatele na vytvoření místnost (lobby) s kódem pro připojení ostatních hráčů. 
 
-| ![návrh](tmp/img5.png){ width=325px } |![návrh](tmp/img6.png){ width=325px } |
-|---------------------------------------|---------------------------------------|
-| *Zobrazení upozornění, že je daný hráč na řadě* | *Zobrazení výsledků, možnost hrát novou hru bez opuštění lobby nebo jít na hlavni stránku a tím se lobby opustí* |
 
+| ![návrh](tmp/img3.png){ width=325px } | ![návrh](tmp/img5.png){ width=325px } |
+|---------------------------------------|---------------------------------------|
+| *Lobby, čekání na připojení ostatních hráčů a tlačítko pro zhájení hry*  | *Hrací deska s figurkami, upozornění, kdo je na řadě.*|
+
+Uživatelský požadavek: Shromáždění do lobby před zahájením hry, v lobby bude videt kdo bude hrát za jakou barvu. a možnost vyplnit zbylé hráče boty nebo nevyplňit chybějící hráče boty - výsledkem je zaškrknutí políčka.
+Upozornění daného hráče, že je na řadě a hodnota hodu kostkou a časovač herního kola(limit pro hráče).
+
+| ![návrh](tmp/img4.png){ width=325px } |![návrh](tmp/img6.png){ width=325px } |
+|---------------------------------------|---------------------------------------|
+| *Začátek hry u hráče, který je právě na tahu* | *Zobrazení výsledků, možnost hrát novou hru bez opuštění lobby nebo jít na hlavni stránku*|
+
+Uživatelský požadavek: Časovač herního kola(limit pro hráče). Na konci hry zbrazit výsledkovou tabulku, kde je vidět pořadí. Je zde tlačítko pro novou hru bez zakládání místnosti.
 
 ### Adam Charvát
 
