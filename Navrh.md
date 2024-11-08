@@ -252,10 +252,9 @@ Každý člen týmu bude vytvářet svůj frontend.
 ### Karolína Virágová
 Návrh je vypracován ve Figmě.
 
-
 | ![návrh](tmp/img.png){ width=325px } | ![návrh](tmp/img2.png){ width=325px } |
 |---------------------------------------|---------------------------------------|
-| * Hlavni obrazovka*                     | *Zadání přezdívky*                     |
+| *Hlavní obrazovka*                     | *Zadání přezdívky*                     |
 
 | ![návrh](tmp/img3.png){ width=325px } | ![návrh](tmp/img4.png){ width=325px } |
 |---------------------------------------|---------------------------------------|
@@ -300,11 +299,13 @@ Uživatelský požadavek: "Časovač herního kola (časový limit pro hráče).
 |---------------------------------------|---------------------------------------|
 | *Další hráč v pořadí je na tahu a má kostku, kterou bude házet* | *Konec hry, jeden z hráčů má jako první všechny figurky v domečku* |
 
+Z průzkumu existujících řešení jasně vyplynulo, že je potřeba označit startovní pole a směr pohybu šipkami, také je potřeba označit odkud se dostává do domečku.
+
 | ![návrh](tmp/GameResultScreen.png){ width=325px } |
 |---------------------------------------|
 | *Výsledková tabulka, kde je vidět výherce a kolik figurek se podařilo dostat do domečku. Také jsou zde tlačítka pro novou hru bez zakládání místnosti (jak vyplývá z uživatelských požadavků) a taky tlačítko pro hlavní nabídku.* |
 
-Tato obrazovka splňuje uživatelský požadavek => "Na konci hry výsledná obrazovka s **pořadím a výhercem**." a "Také preferuje restartovat hru bez nutnosti vytvářet novou místnost (lobby)."
+Tato obrazovka splňuje uživatelský požadavek => "Na konci hry výsledná obrazovka s **pořadím a výhercem**." a "preferuje restartovat hru bez nutnosti vytvářet novou místnost (lobby)."
 
 ## Výběr technologií
 ### Backend
