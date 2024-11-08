@@ -183,11 +183,13 @@ Cílem aplikace je vytvořit online hru s figurkami a hrací kostkou, která umo
 
 Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kombinací dvou různých přístupů k ovládání herních prvků.
 
+*Aplikací* se myslí spojená funkcionalita frontendu a backendu (pro jednodušší obecný popis), tyto dvě části jsou jasně odděleny, jak vyplývá z návrhu API k BE.
+
 #### Člen 1: Automatický pohyb figurky a manuální hod kostkou
 
 1. **Automatický pohyb figurky**:
-   - Po provedení hodu kostkou figurka automaticky vykoná tah podle hodnoty hozeného čísla. Tento tah vypočítá a provede aplikace sama, bez nutnosti uživatelského zásahu.
-   - Backend obdrží hodnotu z kostky a určí novou pozici figurky podle pravidel hry. React (frontend) pak zobrazí aktuální pozici.
+   - Po provedení hodu kostkou vybere uživatel s kterou figurkou chce pohnout, nebo ji umístit na desku. Figurka automaticky vykoná tah podle hodnoty hozeného čísla. Tento tah vypočítá a provede aplikace sama, bez nutnosti uživatelského zásahu.
+   - Backend vygeneruje hodnotu kostky a určí novou pozici figurky podle pravidel hry. Frontend pak zobrazí aktuální pozici.
 
 2. **Manuální hod kostkou**:
    - Hráč má v uživatelském rozhraní tlačítko „Hod kostkou“, které po stisknutí vygeneruje náhodné číslo (1-6).
