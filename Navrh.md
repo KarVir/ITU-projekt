@@ -138,11 +138,11 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 ### Závěry z průzkumu (Aplikace 1 a 2)
 
 1. **Rychlý a snadný přístup**: 
-   Obě aplikace (*Člobrdo* a *Člověče nezlob se*) umožňují rychlé připojení k hře bez nutnosti registrace, což zvyšuje komfort hráčů a usnadňuje okamžitý start. Uživatelé oceňují, že se mohou ihned zapojit do hry bez komplikací, což přispívá k lepšímu uživatelskému zážitku. Tento přístup by měl být kladně hodnocen a doporučen pro jakýkoliv budoucí vývoj.
+   Obě aplikace (*Člobrdo* a *Člověče nezlob se*) umožňují rychlé připojení ke hře bez nutnosti registrace, což zvyšuje komfort hráčů a usnadňuje okamžitý start. Uživatelé oceňují, že se mohou ihned zapojit do hry bez komplikací, což přispívá k lepšímu uživatelskému zážitku. Tento přístup by měl být kladně hodnocen a doporučen pro jakýkoliv budoucí vývoj.
 
 2. **Intuitivní uživatelské rozhraní**: 
    Obě aplikace mají přehledné rozhraní, které je snadné na orientaci. *Člobrdo* využívá automatické pohyby figurek, což šetří čas a zjednodušuje hru, zatímco *Člověče nezlob se* se zaměřuje na manuální pohyb figurek a jasné označení, kam mohou být umístěny. Důraz na jasnou vizualizaci tahů a zobrazení hráče na tahu je klíčovým prvkem, který zvyšuje přehlednost a usnadňuje hru.
-Z
+
 3. **Možnosti přizpůsobení a interakce**: 
    *Člobrdo* i *Člověče nezlob se* nabízejí možnosti přizpůsobení hry, ale oba mají určité limity v oblasti interakcí s ostatními hráči. *Člobrdo* umožňuje přepínání mezi hráči a boty, ale neumožňuje konkrétní volbu spoluhráčů, zatímco *Člověče nezlob se* nenabízí možnost více hráčů, pokud není registrace, což může být limitující. Obě aplikace by těžily z přidání možností pro volbu konkrétních spoluhráčů nebo chatování.
 
@@ -159,7 +159,7 @@ Z
 
 ### Závěry z průzkumu (Aplikace 3,4)
 
-1. Díky průzkumu jsme přišli na další způsob vytvoření kódu místnosti, kdy uživatel vymyslí kód sám, může to být pro něj pohodlnější, ale také ne, záleží na provedení - v aplikaci to bylo řešené špatně, jelikož se objevil input field s nadpisem "Password", chvíli jsem nevěděl, co se po mně chce, až pak mi došlo, že si mám vymyslet heslo místnosti - stačilo tam napsat "Create Room/Invite Password".
+1. Díky průzkumu jsme přišli na další způsob vytvoření kódu místnosti, kdy uživatel vymyslí kód místnosti sám, může to být pro něj pohodlnější, ale také ne, záleží na provedení - v aplikaci to bylo řešené špatně, jelikož se objevil input field s nadpisem "Password", chvíli jsem nevěděl, co se po mně chce, až pak mi došlo, že si mám vymyslet heslo místnosti - stačilo tam napsat "Create Room/Invite Password".
 2. Hra s náhodnými hráči není pro "Člověče, nezlob se" vhodná. Navíc náš uživatel chce hrát se svými přáteli, takže pro nás nemá tento mód vůbec smysl. Na druhou stranu nám tento herní mód ukázal důležitost časovače herního kola, aby byla zachována plynulost hry.
 3. Jelikož náš uživatel bude chtít hrát s kamarády ze zahraničí, pak přichází do úvahy lokalizace a výměna herní desky. Zahraniční varianta desky "Člověče, nezlob se" (Ludo) může být pro některé uživatele nepřehledná a to samé se dá říci o té verzi, která je známá v ČR. Implementace client-side výměny desky za jinou variantu, by nebyla možná, protože používá jiný počet polí. Lokalizaci lze jednoduše vyřešit tak, že hra bude pouze v angličtině, uživatel, který má spoustu přátel v zahraničí s největší pravděpodobností bude umět anglicky.
 4. Bude lepší, když UI bude rozdělené do více částí, které na sebe logicky navazují, než aby se uživateli zobrazil formulář s 10 vyplňovacími poli.
@@ -174,7 +174,7 @@ Karolína: kód vymyslí a zadá uživatel
 
 ## Zadání
 ### Popis požadované cílové aplikace
-Cílem aplikace je vytvořit online hru s figurkami a hrací kostkou, která umožňuje interakci mezi hráči v místnosti (roomce). Aplikace bude poskytovat herní rozhraní, ve kterém se hráči mohou připojit do místnosti, provádět tahy s figurkami.
+Cílem aplikace je vytvořit online hru s figurkami a hrací kostkou, která umožňuje interakci mezi hráči v místnosti (roomce). Aplikace bude poskytovat herní rozhraní, ve kterém se hráči mohou připojit do místnosti a provádět tahy s figurkami.
 
 Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kombinací dvou různých přístupů k ovládání herních prvků.
 
@@ -221,10 +221,12 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 
 #### Lobby
 - **Seznam připojených hráčů** – zobrazení všech aktuálně připojených hráčů.
+- **Přepínač pro zapnutí/vypnutí botů** – hostitel může přepnout vyplnění zbylých hráčů boty
 - **Možnost spuštění hry pro hostitele** – hostitel má tlačítko pro spuštění hry.
 
 #### Herní plocha
 - **Herní deska** - klasická verze hry s barevnými startovními poli, cílovými poli a cestou kolem dokola.
+- **Označené pole** - označení pro startovní a cílové pole (šipky)
 - **Jména hráčů** – zobrazení jmen hráčů v rozích herní desky.
 - **Kostka** – tlačítko pro hod kostkou, které náhodně vygeneruje číslo.
 - **Figurky hráčů** – ikony figurek, které se pohybují po herní ploše podle hodnoty hodu.
