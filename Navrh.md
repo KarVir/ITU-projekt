@@ -52,7 +52,7 @@ Jelikož různí uživatelé mají různé požadavky, rozhodli jsme se implemen
 
 #### 4. Upozornění a časovač
 - **Upozornění pro hráče na tahu**: Notifikace a aktivní tlačítko pro hod kostkou, když je hráč na tahu.
-- **Časovač tahu**: Možnost nastavení časového limitu na tah pro urychlení hry.
+- **Časovač tahu**: Časový limit na tah pro urychlení hry.
 
 #### 5. Výsledková obrazovka
 - **Konečný výsledek hry**: Na konci hry se zobrazí tabulka s výsledky, která bude ukazovat pořadí hráčů a vítěze. Pro některé uživatele stačí stručné zobrazení vítěze bez podrobného skóre, zatímco jiní preferují přehledné pořadí.
@@ -63,7 +63,7 @@ Jelikož různí uživatelé mají různé požadavky, rozhodli jsme se implemen
 Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.html
 
 #### Inspirace:
-- Přeppínač mezi boty a hráči
+- Přepínač mezi boty a hráči
 - Možnost hrát bez přihlašování, což usnadňuje přístup a okamžitý start.
 
 #### Výhody:
@@ -74,25 +74,26 @@ Odkaz na aplikaci: https://fis-public.s3-eu-west-1.amazonaws.com/clobrdo/index.h
 Jednoduché ovládání: Uživatelé nemusí složitě hledat, jak pokračovat, vše je intuitivně zobrazeno
 
 #### Nevýhody:
-- zmátlo mě možnost nastavení hry s boty nebo hráči, 
-- tlačítko pro manuální hod kostkou je malé a nastraně vedle desky. Já bych ho dala pod desku.
+- Zmátla mě možnost nastavení hry s boty nebo hráči (je totiž skryté v hlavní nabídce a boti mají fantasy názvy - není tam napsáno přímo, že se jedná o bota)
+- Tlačítko pro manuální hod kostkou je malé a na straně vedle desky. Já bych ho dala pod desku.
+- Některé texty a ovládací prvky jsou příliš malé.
 
 ### Aplikace 2: Člověče nezlob se
 Odkaz na aplikaci: https://www.zahraj.cz/online-hra/clovece-nehnevaj-sa/
 
 #### Inspirace:
-- manuální pohyb figurek namísto automatického
-- zobrazení obrysu figurky
+- Manuální pohyb figurek namísto automatického
+- Zobrazení obrysu figurky
 
 #### Výhody:
-- kostka zobrazena v pravém rohu, panel u hrací desky ukazuje hodnoty hodu, každého hráče
-- zobrazení, že je daný hráč na řadě
-- při manualním pohybu je zobrazena obrys figurky, kam ji může hráč umístit
+- Kostka zobrazena v pravém rohu, panel u hrací desky ukazuje hodnoty hodu každého hráče
+- Zobrazení, že je daný hráč na řadě
+- Při manualním pohybu je zobrazen obrys figurky, kam ji může hráč umístit
 
 #### Nevýhody:
-- není možnost nastavit pro více hráčů, hraju sama proti borům
-- do hry se není nutné registrovat, ale je to potřeba aby jsi neztratila aktuální hru když odejdeš
-
+- Není možnost nastavit hru pro více hráčů, hraju sama proti botům
+- Do hry se není nutné registrovat, ale je to potřeba, aby nebyla ztracena aktuální hra, když ji opustíme
+- Hodnota kostky je zobrazena vedle desky u každého hráče, ale je tam více čísel, jejichž význam není jasný.
 
 ### Aplikace 3: Člověče nezlob se - Multiplayer
 Odkaz na aplikaci: https://www.zahraj.cz/online-hra/lovee-nehnevaj-sa-multiplayer/
@@ -130,8 +131,9 @@ Odkaz na aplikaci: https://www.hryprodivky.cz/h/ludo-wizard-game-clovece-nezlob-
 
 #### Nevýhody:
 - v případě hraní s random hráči je čekací doba dlouhá (> 5min), navíc se stává, že hráči opustí hru - otázou je, zda-li má tento mód vůbec smysl
-- na jednom startovním poli může být více figurek od více hráčů (figurky se nevyhazují)
+- na jednom startovním poli může být více figurek od více hráčů (figurky se nevyhazují, jak by mohl uživatel očekávat)
 - figurky jsou fantasy postavičky, které lze těžko od sebe rozeznat (není jasné od které barvy je která figurka)
+- hra má v defaultním nastavení hlasitou hudbu, což může být pro uživatele, kteří používají sluchátka nepříjemné, než najdou možnost, jak ji ztlumit
 
 ### Závěry z průzkumu (Aplikace 1 a 2)
 
