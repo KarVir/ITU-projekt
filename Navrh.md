@@ -178,7 +178,7 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 
 *Aplikací* se myslí spojená funkcionalita frontendu a backendu (pro jednodušší obecný popis), tyto dvě části jsou jasně odděleny, jak vyplývá z návrhu API k BE.
 
-#### Člen 1: Automatický pohyb figurky a manuální hod kostkou
+#### Adam Charvát: Automatický pohyb figurky a manuální hod kostkou
 
 1. **Automatický pohyb figurky**:
    - Po provedení hodu kostkou vybere uživatel s kterou figurkou chce pohnout, nebo ji umístit na desku. Figurka automaticky vykoná tah podle hodnoty hozeného čísla. Tento tah vypočítá a provede aplikace sama, bez nutnosti uživatelského zásahu.
@@ -192,7 +192,7 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
    - Při zakládání nové herní místnosti (roomky) je heslo do místnosti automaticky vygenerováno na straně backendu. Tím je zajištěno, že každá místnost má unikátní a bezpečné heslo.
    - Po vytvoření místnosti backend pošle heslo zpět uživateli, který ho může sdílet s dalšími hráči.
 
-#### Člen 2: Manuální pohyb figurky a automatický hod kostkou
+#### Karolína Virágová: Manuální pohyb figurky a automatický hod kostkou
 
 1. **Manuální pohyb figurky**:
    - Hráč může s figurkou pohybovat ručně po herní desce. Například může po hodu kostkou kliknout na figurku a přetáhnout ji na nové místo na základě hodu.
