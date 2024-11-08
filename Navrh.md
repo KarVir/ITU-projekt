@@ -248,7 +248,7 @@ Každý člen týmu bude vytvářet svůj frontend.
 ## Návrh GUI
 
 ### Karolína Virágová
-Návrh Gui jsem dělala ve Figmě.
+Návrh je vypracován ve Figmě.
 
 
 | ![návrh](tmp/img.png){ width=325px } | ![návrh](tmp/img2.png){ width=325px } |
@@ -259,9 +259,9 @@ Návrh Gui jsem dělala ve Figmě.
 |---------------------------------------|---------------------------------------|
 | *Lobby, čekání na připojení ostatních hráčů a tlačítko pro zhájení hry*  | *Hrací deska s figurkami, zobrazují se jména hráčů*   |
 
-| ![návrh](tmp/img5.png){ width=325px } |
-|---------------------------------------|
-| Zobrazení výsledků, možnost hrát novou hru bez opuštění lobby nebo jít na hlavni stránku a tím se lobby opustí   |
+| ![návrh](tmp/img5.png){ width=325px } |![návrh](tmp/img6.png){ width=325px } |
+|---------------------------------------|---------------------------------------|
+| *Zobrazení upozornění, že je daný hráč na řadě* | *Zobrazení výsledků, možnost hrát novou hru bez opuštění lobby nebo jít na hlavni stránku a tím se lobby opustí* |
 
 
 ### Adam Charvát
@@ -489,34 +489,69 @@ data: {
 /synchronize request
 
 
-### Napojení FE na BE (GUI na API)
-V rámci mého projektu zaměřeného na implementaci deskové hry jsem navrhl architekturu, která spojuje front-end (FE) napsaný v Reactu s back-endem (BE) implementovaným v Pythonu pomocí Flasku. Tato dokumentace popisuje, jak jednotlivé API endpointy spolupracují s uživatelským rozhraním.
+### Napojení FE na BE (GUI na API)  
 
-#### 1. React
-- **API Endpoint**: `GET /`
-- **Účel**: Tento endpoint vrací aktuální stav hry, což zahrnuje informace o pozicích hráčů a jejich herních figurách. Tato data jsou nezbytná pro správné zobrazení herního plánu v uživatelském rozhraní.
-- **Vstup**: Žádný (endpoint je volán při načtení stránky).
-- **Výstup**: JSON objekt, který obsahuje:
-  - `colors`: Pole barev figur jednotlivých hráčů.
-  - `starts`: Pozice figur v startovním poli.
-  - `houses`: Pozice figur v domech.
-  - `pieces`: Aktuální pozice figur na herním plánu.
-- **Neimplementováno**: Aktuální implementace nemá robustní logiku pro správu stavu hry a aktualizaci pozic figur. Je třeba zajistit, aby se správně zobrazovaly všechny relevantní informace a aby se správně aktualizoval stav po každém tahu.
+#### 1. FE react    
 
+**Vytvoření místnosti**
 
-#### 3. Zpracování pohybu herní figurky
-- **API Endpoint**: `POST /move`
-- **Účel**: Tento endpoint zpracovává pohyb herní figurky na základě vstupních dat z front-endu. Umožňuje hráči posunout svou figurku na herním plánu.
-- **Vstup**: JSON objekt, který obsahuje:
-  - `pieceIndex`: Index vybrané figurky.
-  - `targetPosition`: Cílová pozice na herním plánu, na kterou se má figurka přesunout.
-  - `diceValue`: Hodnota kostky, která určuje, kolik polí se může figura posunout.
-- **Výstup**: Aktualizovaný stav hry (stejný jako na endpointu `/`) nebo chybové hlášení v případě neplatného pohybu.
-- **Neimplementováno**: Kontrola platnosti pohybu není dostatečně robustní. Je nutné implementovat více pravidel pro ověření, zda je pohyb legální podle pravidel hry.
+- **Komunikace mezi FE a BE**: Klient na GUI odešle na server událost `session:create`, což inicializuje herní místnost.
+- **Event**: `session:create`
+- **Vstupní data**:
+  - `name` – přezdívka hráče
+  - volitelně `key` – vlastní klíč místnosti, pokud si hráč přeje nastavit vlastní kód
+- **Odpověď serveru**: Server vrátí:
+  - `key` – kód místnosti
+  - `owner` – vlastník místnosti
+  - `players` – seznam aktuálně připojených hráčů (na začátku bude pouze vlastník)  
 
-#### 3. Resetování hry
-- **API Endpoint**: `POST /reset`
-- **Účel**: Tento endpoint obnoví hru na výchozí stav a připraví nové hráče na začátek nové hry.
-- **Vstup**: Žádný (volání se provádí kliknutím na tlačítko pro reset).
-- **Výstup**: JSON objekt, který vrací aktuální stav hry po resetu, obdobný jako na endpointu `/`.
-- **Neimplementováno**: Logika pro správnou inicializaci hráčů a herního stavu nebyla plně testována. Je nutné ověřit, že se všichni hráči správně přidávají a připravují na hru.
+Zobrazí `key` jako kód místnosti, který lze sdílet s ostatními hráči, aby se mohli připojit do hry.
+
+**Připojení do místnosti**
+
+- **Komunikace mezi FE a BE**: Po zadání kódu místnosti na GUI klient odešle událost `session:join`.
+-**Event**: `session:join`
+- **Vstupní data**:
+  - `key` – kód místnosti
+  - `name` – přezdívka hráče, který se chce připojit
+- **Odpověď serveru**: Server vrátí:
+  - `key` – kód místnosti
+  - `owner` – vlastník místnosti
+  - `me` – údaje o nově připojeném hráči
+  - `players` – aktuální seznam hráčů v místnosti  
+
+Aktualizuje a zobrazí seznam hráčů připojených k místnosti. Událost `session:joined` se odešle ostatním hráčům v místnosti, aby byli informováni o novém hráči.
+
+**Automatický hod kostkou**
+
+- **Komunikace mezi FE a BE**: Jakmile je na tahu nový hráč, server automaticky odešle událost `game:diceRolled`, čímž se simuluje hod kostkou. Tato událost probíhá bez nutnosti uživatele klikat na tlačítko „Hodit kostkou.“
+
+- **Event**: `game:diceRolled`
+- **Vstupní data**: žádná (vyvolává server automaticky při zahájení tahu hráče)
+- **Odpověď serveru**: Server vrátí všem klientům informaci o výsledku hodu kostkou (1–6) spolu s příznakem, zda hráč může nasadit novou figurku (`canDeploy: boolean`).
+
+Frontend obdrží událost `game:diceRolled`, aktualizuje zobrazení hodnoty hodu kostkou na herní desce, a hráč může následně vybrat figurku pro tah.
+
+**Kliknutí na figurku a výběr cílového políčka**
+
+- **Komunikace mezi FE a BE**: Když uživatel klikne na figurku a vybere cílové políčko, frontend odešle požadavek na server pomocí události `game:movePiece`.
+
+- **Event**: `game:movePiece`
+- **Vstupní data**: `{ commonPosition: <cílová pozice figurky> }`
+- **Odpověď serveru**: Server potvrdí pohyb figurky a vyšle zpět aktualizované herní informace přes `game:updated`, což zahrnuje nové pozice, informace o případných kolizích a dalšího hráče na tahu.
+
+**Zahájení nové hry**
+
+- **Komunikace mezi FE a BE**: Při kliknutí na tlačítko pro zahájení nové hry frontend odešle požadavek `game:start`, což spustí hru a zobrazí všechny hráče na herní desce.
+
+- **Event**: `game:start`
+- **Vstupní data**: `{ fillWithBots: <boolean, vyplnit prázdná místa boty> }`
+- **Odpověď serveru**: Server odpoví `game:started`, kde předá kompletní nastavení hry (struktura `Game`).
+
+**Kliknutí na tlačítko Reset**
+
+- **Komunikace mezi FE a BE**: Po kliknutí na tlačítko Reset frontend odešle požadavek na server pro resetování hry. Tento krok se provádí vytvořením nové session nebo opětovným načtením.
+
+- **Event**: `session:create` nebo specifická resetovací událost, pokud je implementována
+- **Vstupní data**: `{ key: <identifikátor místnosti>, name: <jméno hráče> }`
+- **Odpověď serveru**: Server vrátí klíč nové nebo obnovené herní session, případně další potřebné informace, aby se hra mohla znovu načíst na frontendu.
