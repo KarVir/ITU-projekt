@@ -289,17 +289,19 @@ Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:
 ```ts
 interface Player {
     // Unikátní identifikátor hráče
-    id: number,
+    id: number;
     // Přezdívka hráče
-    name: string,
+    name: string;
     // Barva - red, green, blue, yellow
     // (barvy jsou přiřazovány hráčům náhodně)
-    color: string
+    color: string;
 }
 ```
 #### Piece
 ```ts
 interface Piece {
+    // Unikátní identifikátor figurky
+    id: number;
     // ID hráče, který vlastní figurku
     ownerId: number; // Player.id
     // Barva figurky, stejná jako Player.color
@@ -318,28 +320,54 @@ interface Piece {
 interface Game {
     board: {
         /* Délka společného místa na desce, klasicky 40 polí */
-        commonLength: number,
+        commonLength: number;
         /* Délka domečku, klasicky 4 pole */
-        houseLength: number,
+        houseLength: number;
         // Maximální počet hráčů
-        maxPlayers: number,
+        maxPlayers: number;
         // Figurky
-        pieces: Piece[],
+        pieces: Piece[];
     },
     // Hráči v místnosti
-    players: Player[],
+    players: Player[];
     // Hráč, který je na tahu
-    nextPlayerId: number // Player.id
+    nextPlayerId: number; // Player.id
 }
 ```
 
 #### Collision Info
 ```ts
 interface CollisionInfo {
-    action: 'kicked' | 'denied',
-    position: number,
-    piece: Piece,
-    issuedBy: number // Player.id
+    // 'kicked': Figurka byla vyhozena
+    // 'denied': Figurce byl zamítnut pohyb
+    //  (např. nelze vyhodit vlastní figurku v domečku)
+    action: 'kicked' | 'denied';
+    // 'kicked': Společná pozice, na které nastala kolize
+    // 'denied':
+    //    >= 40 (pozice v domečku, která je obsazená)
+    //    < 40  (společná pozice, která je obsazená)
+    position: number;
+    // 'kicked': Figurka, kterou je potřeba aktualizovat
+    // 'denied': Žádná změna (stejná figurka)
+    piece: Piece;
+    // 'kicked': Hráč, který kolizi způsobil a vyhodil jinou figurku
+    // 'denied': Hráč, jehož figurce byla odmítnuta změna pozice
+    issuedById: number; // Player.id
+}
+```
+
+V závislosti na verzi pravidel, je možné řešit kolizi:
+- Hráč, kterému byl zamítnut pohyb hraje znovu
+- Posunutím kola na dalšího hráče
+
+#### Score Record
+
+```ts
+interface ScoreRecord {
+    // ID hráče
+    playerId: number;
+    // Hodnota figurek v domečku
+    value: number;
 }
 ```
 
@@ -372,11 +400,11 @@ payload: {
 
 response: {
     // Klíč k nově vytvořené místnosti
-    key: string,
+    key: string;
     // Vlastník místnosti
-    owner: Player,
+    owner: Player;
     // Klienti v místnosti (zatím jen jeden)
-    players: Player[]
+    players: Player[];
 }
 ```
 Pošle `error`, pokud je specifikován `key` v `payload` a session se stejným klíčem již existuje.
@@ -386,20 +414,20 @@ Pošle `error`, pokud je specifikován `key` v `payload` a session se stejným k
 ```ts
 payload: {
     // Klíč k místnosti
-    key: string,
+    key: string;
     // Přezdívka připojujícího se klienta
-    name: string
+    name: string;
 }
 
 response: {
     // Klíč k místnosti
-    key: string,
+    key: string;
     // Vlastník místnosti
-    owner: Player,
+    owner: Player;
     // Nově připojený hráč
-    me: Player,
+    me: Player;
     // Aktuálně připojení klienti ve stejné místnosti
-    players: Player[]
+    players: Player[];
 }
 ```
 Pošle `error`, pokud je `key` neexistuje.
@@ -409,27 +437,26 @@ Pošle `error`, pokud je `key` neexistuje.
 ```ts
 payload: {
     // Zda vyplnit zbylé hráče boty
-    fillWithBots: boolean
+    fillWithBots: boolean;
 }
 ```
 
 **Event** `game:play`\
-*Žádost o hození kostky - vygenerování náhodného čísla*
+*Žádost o hození kostky - vygenerování náhodného čísla (žádný `payload`)*
 
 **Event** `game:movePiece`\
 *Žádost o pohnutí figurky*
 ```ts
 payload: {
     // Společná pozice figurky, s kterou se má pohnout
-    commonPosition: number
+    commonPosition: number;
 }
 ```
 
 **Event** `game:deployPiece`\
 *Žádost o umístění nové figurky na startovní pole*
-```ts
-data: null
-```
+
+Žádný `payload`, na herní desku se umístí první neumístěná figurka hráče.
 
 ### Události vyvolané serverem
 
@@ -466,12 +493,16 @@ data: {
 *Žádost všem klientům o upravení datového modelu hry*
 ```ts
 data: {
-    // Informace o kolizi pokud nastala
-    collision: CollisionInfo | null,
+    // Informace o kolizi, pokud nastala
+    //   V případě kolize typu 'kicked',
+    //   obsahuje informace o další figurce,
+    //   kterou je potřeba aktualizovat
+    //   (CollisionInfo.piece)
+    collision: CollisionInfo | null;
     // Aktualizovaná figurka, kterou je potřeba nahradit v datovém modelu
-    updatedPiece: Piece,
+    updatedPiece: Piece;
     // Další hráč na tahu
-    nextPlayerId: number
+    nextPlayerId: number;
 }
 ```
 
@@ -479,16 +510,12 @@ data: {
 *Oznámení o tom, že hra skončila*
 ```ts
 data: {
-    score: [
-        
-    ]
+    // Informace o skóre každého hráče
+    score: ScoreRecord[];
+    /* Délka domečku, klasicky 4 pole */
+    houseLength: number;
 }
 ```
-
-## Flask Routes
-
-/synchronize request
-
 
 ### Napojení FE na BE (GUI na API)  
 
