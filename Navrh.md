@@ -407,7 +407,7 @@ V závislosti na verzi pravidel, je možné řešit kolizi:
 interface ScoreRecord {
   // ID hráče
   playerId: number;
-  // Hodnota figurek v domečku
+  // Počet figurek v domečku
   value: number;
 }
 ```
@@ -416,9 +416,11 @@ interface ScoreRecord {
 
 ### Události vyvolané knihovnou
 
-Event `connect`
+Event `connect`\
+*Backend dostane událost `connect`, jakmile se klientský socket připojí. Tato událost je na straně klienta poslána automaticky po vytvoření instance Socket.IO*
 
-Event `disconnect`
+Event `disconnect`\
+*Backend dostane událost `disconnect`, jakmile se klientský socket odpojí nebo neodpovídá.*
 
 ### Události vyvolané klientem
 
