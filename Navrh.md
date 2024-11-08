@@ -268,6 +268,32 @@ Návrh je vypracován ve Figmě.
 
 Návrh ve Figmě je vypracován v češtině, výsledná aplikace bude v angličtině.
 
+Odkaz na Figmu: https://www.figma.com/design/rd0f0rpoLtBvGV09cXrDkW/ITU-projekt?node-id=0-1&t=FFq7HpxqOolRMLZx-1
+
+| ![návrh](tmp/MainMenu.png){ width=325px } |![návrh](tmp/NameHost.png){ width=325px } |
+|---------------------------------------|---------------------------------------|
+| *Úvodní obrazovka* | *Zadání přezdívky* |
+
+| ![návrh](tmp/LobbyHost.png){ width=325px } |![návrh](tmp/LobbyClient.png){ width=325px } |
+|---------------------------------------|---------------------------------------|
+| *Lobby z pohledu majitele/tvůrce místnosti* | *Lobby z pohledu připojeného hráče* |
+
+| ![návrh](tmp/LobbyHostBots.png){ width=325px } |
+|---------------------------------------|
+| *Lobby z pohledu majitele místnosti v případě, že není dostatek hráčů* |
+
+| ![návrh](tmp/GameFirstTurn.png){ width=325px } |![návrh](tmp/GameDiceRolled.png){ width=325px } |
+|---------------------------------------|---------------------------------------|
+| *Začátek hry u hráče, který je právě na tahu* | *Začátek hry po hození kostkou a pohybu figurkou* |
+
+| ![návrh](tmp/GameSecondTurn.png){ width=325px } |![návrh](tmp/GameEnded.png){ width=325px } |
+|---------------------------------------|---------------------------------------|
+| *Další hráč v pořadí je na tahu a má kostku, kterou bude házet* | *Konec hry, jeden z hráčů má jako první všechny figurky v domečku* |
+
+| ![návrh](tmp/GameResultScreen.png){ width=325px } |
+|---------------------------------------|
+| *Výsledková tabulka, kde je vidět výherce a kolik figurek se podařilo dostat do domečku. Také jsou zde tlačítka pro novou hru bez zakládání místnosti (jak vyplývá z uživatelských požadavků) a taky tlačítko pro hlavní nabídku.* |
+
 ## Výběr technologií
 ### Backend
 Na prvním meetingu jsme se v týmu domluvili, že backend bude vytvořen v programovacím jazyce Python a bude využívat framework Flask pro HTTP komunikaci. Jelikož cílem aplikace je vytvořit multiplayerovou hru, pak bude nejlepší použít WebSockety pro obousměrnou komunikaci v reálném čase.
