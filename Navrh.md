@@ -562,79 +562,14 @@ data: {
 
 ### Napojení FE na BE (GUI na API)  
 
-#### 1. React
-
-**Vytvoření místnosti**
-
-- **Komunikace mezi FE a BE**: Klient na GUI odešle na server událost `session:create`, což inicializuje herní místnost.
-- **Event**: `session:create`
-- **Vstupní data**:
-  - `name` – přezdívka hráče
-  - volitelně `key` – vlastní klíč místnosti, pokud si hráč přeje nastavit vlastní kód
-- **Odpověď serveru**: Server vrátí:
-  - `key` – kód místnosti
-  - `owner` – vlastník místnosti
-  - `players` – seznam aktuálně připojených hráčů (na začátku bude pouze vlastník)  
-
-Zobrazí `key` jako kód místnosti, který lze sdílet s ostatními hráči, aby se mohli připojit do hry.
-
-**Připojení do místnosti**
-
-- **Komunikace mezi FE a BE**: Po zadání kódu místnosti na GUI klient odešle událost `session:join`.  
-- **Event**: `session:join`
-- **Vstupní data**:
-  - `key` – kód místnosti
-  - `name` – přezdívka hráče, který se chce připojit
-- **Odpověď serveru**: Server vrátí:
-  - `key` – kód místnosti
-  - `owner` – vlastník místnosti
-  - `me` – údaje o nově připojeném hráči
-  - `players` – aktuální seznam hráčů v místnosti  
-
-Aktualizuje a zobrazí seznam hráčů připojených k místnosti. Událost `session:joined` se odešle ostatním hráčům v místnosti, aby byli informováni o novém hráči.
-
-**Automatický hod kostkou**
-
-- **Komunikace mezi FE a BE**: Jakmile je na tahu nový hráč, server automaticky odešle událost `game:diceRolled`, čímž se simuluje hod kostkou. Tato událost probíhá bez nutnosti uživatele klikat na tlačítko „Hodit kostkou.“
-
-- **Event**: `game:diceRolled`
-- **Vstupní data**: žádná (vyvolává server automaticky při zahájení tahu hráče)
-- **Odpověď serveru**: Server vrátí všem klientům informaci o výsledku hodu kostkou (1–6) spolu s příznakem, zda hráč může nasadit novou figurku (`canDeploy: boolean`).
-
-Frontend obdrží událost `game:diceRolled`, aktualizuje zobrazení hodnoty hodu kostkou na herní desce, a hráč může následně vybrat figurku pro tah.
-
-**Kliknutí na figurku a výběr cílového políčka**
-
-- **Komunikace mezi FE a BE**: Když uživatel klikne na figurku a vybere cílové políčko, frontend odešle požadavek na server pomocí události `game:movePiece`.
-
-- **Event**: `game:movePiece`
-- **Vstupní data**: `{ commonPosition: <cílová pozice figurky> }`
-- **Odpověď serveru**: Server potvrdí pohyb figurky a vyšle zpět aktualizované herní informace přes `game:updated`, což zahrnuje nové pozice, informace o případných kolizích a dalšího hráče na tahu.
-
-**Zahájení nové hry**
-
-- **Komunikace mezi FE a BE**: Při kliknutí na tlačítko pro zahájení nové hry frontend odešle požadavek `game:start`, což spustí hru a zobrazí všechny hráče na herní desce.
-
-- **Event**: `game:start`
-- **Vstupní data**: `{ fillWithBots: <boolean, vyplnit prázdná místa boty> }`
-- **Odpověď serveru**: Server odpoví `game:started`, kde předá kompletní nastavení hry (struktura `Game`).
-
-**Kliknutí na tlačítko Reset**
-
-- **Komunikace mezi FE a BE**: Po kliknutí na tlačítko Reset frontend odešle požadavek na server pro resetování hry. Tento krok se provádí vytvořením nové session nebo opětovným načtením.
-
-- **Event**: `session:create` nebo specifická resetovací událost, pokud je implementována
-- **Vstupní data**: `{ key: <identifikátor místnosti>, name: <jméno hráče> }`
-- **Odpověď serveru**: Server vrátí klíč nové nebo obnovené herní session, případně další potřebné informace, aby se hra mohla znovu načíst na frontendu.
-
-#### 2. Angular
-
 **Lobby**
 
 Event `session:create` nebo `session:join` dodá prvku `LobbyComponent` úvodní data k zobrazení.
-Tyto události jsou na straně klienta vyvolány a zaslány backendu v reakci na kliknutí uživatele:
+Tyto události jsou na straně klienta vyvolány a zaslány backendu v reakci na kliknutí uživatele na tlačítko "Pokračovat" po zadání přezdívky:
 - Tlačítko "Připojit se do hry": `session:join`
 - Tlačítko "Vytvořit hru": `session:create`
+
+V obou případech kliknutí na tlačítko se zobrazí obrazovka pro zadání přezdívky a je vyvolán příslušný event podle předchozího zvoleného tlačítka (z předchozího módu obrazovky).
 
 Úvodní data se dále aktualizují v reakci na `session:joined`, kdy server pošle data nově připojeného hráče.
 
