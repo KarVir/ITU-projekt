@@ -537,8 +537,8 @@ Zobrazí `key` jako kód místnosti, který lze sdílet s ostatními hráči, ab
 
 **Připojení do místnosti**
 
-- **Komunikace mezi FE a BE**: Po zadání kódu místnosti na GUI klient odešle událost `session:join`.
--**Event**: `session:join`
+- **Komunikace mezi FE a BE**: Po zadání kódu místnosti na GUI klient odešle událost `session:join`.  
+- **Event**: `session:join`
 - **Vstupní data**:
   - `key` – kód místnosti
   - `name` – přezdívka hráče, který se chce připojit
