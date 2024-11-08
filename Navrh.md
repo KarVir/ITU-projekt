@@ -231,7 +231,7 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 - **Kostka** – tlačítko pro hod kostkou, které náhodně vygeneruje číslo.
 - **Figurky hráčů** – ikony figurek, které se pohybují po herní ploše podle hodnoty hodu.
 
-#### Stavová oznámení
+#### Stavová oznámení  
   - "Jsi na tahu" – indikace, že je řada daný hráči.
   - "Červená vyhodila zelenou" – upozornění na události ve hře.
   - "Zbývá 30s do konce tvého kola" – odpočítávání času na tah.
@@ -239,8 +239,8 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 
     *Stavová oznámení jsou realizována buď jako overlay text nebo top/bottom bar s textem.*
 
-#### Konec hry a skóre
-- Po ukončení hry se zobrazí **tabulka s výsledky** a možnost tlačítko restartu hry nebo návratu na hlavní obrazovku.
+#### Konec hry a skóre  
+- Po ukončení hry se zobrazí **tabulka s výsledky** a možnost tlačítko restartu hry nebo návratu na hlavní obrazovku.  
 
 ### Rozdělení práce v týmu na FE
 Každý člen týmu bude vytvářet svůj frontend.
@@ -290,7 +290,7 @@ Požadavek uživatele: "Možnost vytvořit místnost (lobby) s kódem pro připo
 
 Uživatelský požadavek: "Shromáždění do lobby před začátkem hry, **v lobby vidět kdo bude hrát za jakou barvu**."
 
-| ![návrh](tmp/LobbyHostBots.png){ width=325px } |
+| ![návrh](tmp/LobbyHostBots.png) |
 |---------------------------------------|
 | *Lobby z pohledu majitele místnosti v případě, že není dostatek hráčů* |
 
@@ -308,7 +308,7 @@ Uživatelský požadavek: "Časovač herního kola (časový limit pro hráče).
 
 Z průzkumu existujících řešení jasně vyplynulo, že je potřeba označit startovní pole a směr pohybu šipkami, také je potřeba označit odkud se dostává do domečku.
 
-| ![návrh](tmp/GameResultScreen.png){ width=325px } |
+| ![návrh](tmp/GameResultScreen.png) |
 |---------------------------------------|
 | *Výsledková tabulka, kde je vidět výherce a kolik figurek se podařilo dostat do domečku. Také jsou zde tlačítka pro novou hru bez zakládání místnosti (jak vyplývá z uživatelských požadavků) a taky tlačítko pro hlavní nabídku.* |
 
@@ -318,14 +318,14 @@ Tato obrazovka splňuje uživatelský požadavek => "Na konci hry výsledná obr
 ### Backend
 Na prvním meetingu jsme se v týmu domluvili, že backend bude vytvořen v programovacím jazyce Python a bude využívat framework Flask pro HTTP komunikaci. Jelikož cílem aplikace je vytvořit multiplayerovou hru, pak bude nejlepší použít WebSockety pro obousměrnou komunikaci v reálném čase.
 
-Hlavní knihovny:
-- Flask
-- Flask-SocketIO
+Hlavní knihovny:  
+- Flask  
+- Flask-SocketIO  
 
 ### Frontend
 Frontend bude každý člen týmu vytvářet v jiném webovém frameworku:  
-- Adam Charvát: Angular
-- Karolína Virágová: React
+- Adam Charvát: Angular  
+- Karolína Virágová: React  
 
 Angular a React jsou moderní webové frameworky, které jsou založené na principu zabalení jednotlivých částí webových stránek a funkctionalit do komponentů a jejich znovupoužití.
 
@@ -404,9 +404,9 @@ interface CollisionInfo {
 }
 ```
 
-V závislosti na verzi pravidel, je možné řešit kolizi:
-- Hráč, kterému byl zamítnut pohyb hraje znovu
-- Posunutím kola na dalšího hráče
+V závislosti na verzi pravidel, je možné řešit kolizi:  
+- Hráč, kterému byl zamítnut pohyb hraje znovu  
+- Posunutím kola na dalšího hráče  
 
 #### Score Record
 
@@ -572,9 +572,9 @@ data: {
 **Lobby**
 
 Event `session:create` nebo `session:join` dodá prvku `LobbyComponent` úvodní data k zobrazení.
-Tyto události jsou na straně klienta vyvolány a zaslány backendu v reakci na kliknutí uživatele na tlačítko "Pokračovat" po zadání přezdívky:
-- Tlačítko "Připojit se do hry": `session:join`
-- Tlačítko "Vytvořit hru": `session:create`
+Tyto události jsou na straně klienta vyvolány a zaslány backendu v reakci na kliknutí uživatele na tlačítko "Pokračovat" po zadání přezdívky:    
+- Tlačítko "Připojit se do hry": `session:join`    
+- Tlačítko "Vytvořit hru": `session:create`  
 
 V obou případech kliknutí na tlačítko se zobrazí obrazovka pro zadání přezdívky a je vyvolán příslušný event podle předchozího zvoleného tlačítka (z předchozího módu obrazovky).
 
@@ -590,9 +590,9 @@ Podle toho, kdo je na tahu, má přístup k tlačítku kostky, toto tlačítko v
 
 Backend událost vyhodnotí a pošle všem klientům `game:diceRolled` s hodnotou kostky, která byla vržena a její hodnota vygenerována. Hodnota kostky se zobrazí v GUI na kostce.
 
-Hráč, který kostkou hodil, pokud mu padla šestka, pak má 2 možnosti:
-- Umístit na desku novou figurku, kliknutím na figurku se pošle event `game:deployPiece`
-- Pohnout s libovolnou figurkou, která už je na desce, kliknutím na figurku se pošle event `game:movePiece`.
+Hráč, který kostkou hodil, pokud mu padla šestka, pak má 2 možnosti:  
+- Umístit na desku novou figurku, kliknutím na figurku se pošle event `game:deployPiece`  
+- Pohnout s libovolnou figurkou, která už je na desce, kliknutím na figurku se pošle event `game:movePiece`.  
 
 Pokud hráč šestku nehodil, pak má pouze možnost pohnout s figurkou, která už je na desce. Pokud nemá na desce žádnou figurku, pak pošle `game:deployPiece`, který mu backend zamítne.
 
@@ -604,6 +604,6 @@ Pokud klient v dostatečné době (např. 30s) nezašle `game:play`, `game:moveP
 
 Když backend identifikuje výherce, rozešle všem `game:ended` obsahující výsledné skóre, které GUI zobrazí ve výsledkové tabulce.
 
-Ve výsledkové tabulce jsou tlačítka:
-- "Hrát znovu", kliknutí vyvolá událost `game:start`
+Ve výsledkové tabulce jsou tlačítka:  
+- "Hrát znovu", kliknutí vyvolá událost `game:start`  
 - "Návrat do lobby", kliknutím vyvolá událost `session:leave`
