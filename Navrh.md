@@ -7,8 +7,8 @@ geometry: "left=2cm, right=2cm, top=2.5cm, bottom=2.5cm"
 Naše aplikace se jmenuje: **Člověče, nezlob se! online s přáteli**
 
 ## Tým:  
-## - Adam Charvát  
-- Karolína Virágová  
+- **Adam Charvát** (Kapitán)
+- Karolína Virágová
 
 ## Uživatelský průzkum a specifikace
 Uživatel je člověk, který má rád deskové hry, ale má většinu přátel v zahraničí.
