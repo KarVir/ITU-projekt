@@ -17,7 +17,7 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 ## Rozdělení práce členů týmu na Výsledné implementaci (pouze FE)
 Každý člen týmu implementoval vlastní frontend. Imlamentace Fe probíhala do samostatných složek ve složce static, kde se nacházi složky pojmenované loginem daného autora. 
 
-# Struktura projektu
+## Struktura projektu
 
 - /aktualní složka
   - /src
@@ -35,13 +35,49 @@ Na kontrolní prezentaci nebyly žádné připomínky.
 
 ## Testování
 ### Uživatel A
+#### 1. Informace o uživateli:
+- **Věková skupina:**
+- **Pohlaví:**
+- **Technická zdatnost:** 
+- **Pracovní zaměření:**  
+#### 2. Popis průběhu testu:
+
+#### 3. Dva klíčové výsledky z pozorování:
+##### Poznatek 1:
+
 ### Uživatel B
+#### 1. Informace o uživateli:
+- **Věková skupina:**
+- **Pohlaví:**
+- **Technická zdatnost:** 
+- **Pracovní zaměření:**
+#### 2. Popis průběhu testu:
+
+#### 3. Dva klíčové výsledky z pozorování:
+##### Poznatek 1:
+
 #### Ponaučení
 
 ### Uživatel C
+#### 1. Informace o uživateli:
+- **Věková skupina:** 52 let  
+- **Pohlaví:** žena  
+- **Technická zdatnost:** Mírně pokročilá, používá počítač a mobilní telefon k běžné administrativní práci, jako je e-mail, prohlížení webu a používání základních aplikací, ale s omezenými zkušenostmi s pokročilými funkcemi.  
+- **Pracovní zaměření:** Asistenka v mateřské škole  
+
+#### 2. Popis průběhu testu:
+
+#### 3. Dva klíčové výsledky z pozorování:
+##### Poznatek 1:
+
 ### Uživatel D
+#### 1. Informace o uživateli:
+- **Věková skupina:** 25–30 let  
+- **Pohlaví:** Muž  
+- **Technická zdatnost:**
+
+- **Pracovní zaměření:** IT technik, zvyklý na práci s technologií a aplikacemi.  
+#### 2. Popis průběhu testu:
 
 #### Ponaučení
-
-
 
