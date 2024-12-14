@@ -1,0 +1,19 @@
+.ended {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.scoreboard{
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column; /* Zajistí, že tlačítka budou pod sebou */
+  gap: 10px; /* Mezera mezi tlačítky */
+  margin-top: 20px;
+  border-radius: 25px;
+}

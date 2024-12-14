@@ -1,0 +1,107 @@
+/* Board.css */
+.board {
+  display: grid;
+  grid-template-columns: repeat(11, 40px); /* 11x11 grid */
+  grid-template-rows: repeat(11, 40px); /* 11 řad */
+  gap: 5px; /* Zvětšení mezery mezi políčky */
+  justify-content: center;
+  vertical-align: center;
+}
+.tile {
+  width: 40px; /* Velikost políčka */
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid black ;
+  border-radius: 100%;
+  text-align: center;
+
+}
+
+.empty-tile {
+  visibility: hidden; /* Skrytí prázdných políček */
+}
+
+.piece {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* Tvar figurky jako kruh */
+  border: 3px solid white; /* Okraj figurky */
+  z-index: 5;
+}
+
+
+.selected-piece {
+  border: 2px solid black;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+.null-piece {
+  border-radius: 50%; /* Kulatý tvar figurky */
+  text-align: center;
+  font-size: 0.8rem;
+  color: white; /* Barva textu */
+}
+
+
+.status-message {
+  margin-top: -50px;
+  margin-bottom: 8px;
+  padding: 2px;
+  background-color: hsla(0, 0%, 100%, 0.8); /* Bílé pozadí s 80% neprůhledností */
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  margin-top: -50px;
+  margin-bottom: 8px;
+  padding: 2px;
+  color: red;
+  background-color: hsla(0, 0%, 100%, 0.8); /* Bílé pozadí s 80% neprůhledností */
+  padding: 2px;
+  font-weight: bold;
+}
+
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Styl pro zobrazení jména hráče na herní desce */
+.player-name {
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Umístění jména podle pozice hráče (můžete upravit pozici podle potřeby) */
+.player-1 {
+  top: 85px;
+  left: 10px;
+}
+
+.player-4 {
+  top: 85px;
+  right: 10px;
+}
+
+.player-2 {
+  bottom: 45px;
+  left: 10px;
+}
+
+.player-3 {
+  bottom: 45px;
+  right: 10px;
+}
+

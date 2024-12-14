@@ -1,0 +1,14 @@
+div{
+  color: white; /* Černý text */
+}
+
+
+ul {
+  list-style-position: inside; /* Přesune tečku blíže k textu */
+  padding-left: 0; /* Odstraní vnitřní odsazení seznamu */
+  margin-left: 0; /* Odstraní vnější odsazení seznamu */
+}
+
+li {
+  padding-left: 5px; /* Přidá trochu prostoru mezi tečku a text */
+}
