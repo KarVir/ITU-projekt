@@ -16,7 +16,7 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 *Aplikací* se myslí spojená funkcionalita frontendu a backendu (pro jednodušší obecný popis), tyto dvě části jsou jasně odděleny, jak vyplývá z návrhu API k BE(popsáno v souboru 00_login_navrh.pdf).
 
 ## Rozdělení práce členů týmu na Výsledné implementaci (pouze FE)
-Každý člen týmu implementoval vlastní frontend. Implementace Fe probíhala do samostatných složek nacházejíci se ve složce static, kde se nacházi složky pojmenované loginem daného autora. 
+Každý člen týmu implementoval vlastní frontend. Implementace Fe probíhala do samostatných složek pojmenovaných loginem daného autora. 
 
 ## Struktura projektu
 
