@@ -16,41 +16,41 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 *Aplikací* se myslí spojená funkcionalita frontendu a backendu (pro jednodušší obecný popis), tyto dvě části jsou jasně odděleny, jak vyplývá z návrhu API k BE(popsáno v souboru 00_login_navrh.pdf).
 
 ## Odchylky od původního zadání
-*Body zadání, jejichž implementaci jsme nestihli:*
-- Barvy nejsou viditelné v lobby.
-- Výměna herní desky nebyla implementována.
-- Časovač herního kola nebyl implementován.
-- Adam Charvát: Oproti mému návrhu ve Figmě byl zrušen mezikrok mezi výsledkovou tabulkou a herní deskou ("Přejít na výsledky") a výsledky se zobrazí rovnou po skončení hry.
-- Adam Charvát: Šipky na herní desce (pro startovní a cílové pole), vycházelo z kritiky existujících řešení
+*Body zadání, jejichž implementaci jsme nestihli:*    
+- Barvy nejsou viditelné v lobby.  
+- Výměna herní desky nebyla implementována.  
+- Časovač herního kola nebyl implementován.  
+- Adam Charvát: Oproti mému návrhu ve Figmě byl zrušen mezikrok mezi výsledkovou tabulkou a herní deskou ("Přejít na výsledky") a výsledky se zobrazí rovnou po skončení hry.  
+- Adam Charvát: Šipky na herní desce (pro startovní a cílové pole), vycházelo z kritiky existujících řešení  
 
 ## Known bugs
 - V backendu není řešená situace 2 figurek stejného hráče na jednom políčku (jedna je v dalším kole vyhozena).
 
-**Adam Charvát**:
-- V případě mého frontendu tento stav backendu rozbije hru, že se nedá dohrát. (vznikne ghost figurka)
-- Dále špatně funguje předávání kola na druhého hráče v případě, že aktuální hráč nemůže pohnout s žádnou figurkou. (je potřeba kliknout na figurky mimo desku, ale mělo by se to dít automaticky)
+**Adam Charvát**:  
+- V případě mého frontendu tento stav backendu rozbije hru, že se nedá dohrát. (vznikne ghost figurka)  
+- Dále špatně funguje předávání kola na druhého hráče v případě, že aktuální hráč nemůže pohnout s žádnou figurkou. (je potřeba kliknout na figurky mimo desku, ale mělo by se to dít automaticky)  
 
 ## Rozdělení práce členů týmu na Výsledné implementaci (pouze FE)
 Každý člen týmu implementoval vlastní frontend. Implementace FE probíhala do samostatných složek pojmenovaných loginem daného autora.
 
 ## Výsledná implementace (Adam Charvát)
-**Kontrolní prezentace**
-Na kontrolní prezentaci nebyly explicitně uvedené žádné nedostatky, ale v reportu z mailu bylo uvedeno:
-- *Propojení GUI komponent: Demonstruje pouze částečně, k lepšímu hodnocení projektu je vhodné ještě vylepšit/rozšířit.*
-- Rozhodl jsem se to pro jistotu ve své části vylepšit, např. rozdělením větších komponent na komponenty menší a implementace komunikace mezi nimi.
-- Např. z komponenty herní desky BoardComponent byly oddělány figurky a jsou řešené samostatnou komponentou PieceComponent. To stejné taky pro kostku.
-- 
-**Frontend**
+**Kontrolní prezentace**  
+Na kontrolní prezentaci nebyly explicitně uvedené žádné nedostatky, ale v reportu z mailu bylo uvedeno:  
+- *Propojení GUI komponent: Demonstruje pouze částečně, k lepšímu hodnocení projektu je vhodné ještě vylepšit/rozšířit.*  
+- Rozhodl jsem se to pro jistotu ve své části vylepšit, např. rozdělením větších komponent na komponenty menší a implementace komunikace mezi nimi.  
+- Např. z komponenty herní desky BoardComponent byly oddělány figurky a jsou řešené samostatnou komponentou PieceComponent. To stejné taky pro kostku.  
+
+**Frontend**  
 Implementoval jsem celý frontend v Angularu samostatně.
-Odkazy na klíčové části FE (komponent je složka s .html + .ts + .scss):
-- **Hlavní menu + Obrazovka pro zadání přezdívky:** /frontend-xcharv23/src/app/components/main-menu
-- **Lobby:** /frontend-xcharv23/src/app/components/lobby
-- **Herní plocha:** /frontend-xcharv23/src/app/components/board
-- **Stavová oznámení:** /frontend-xcharv23/src/app/components/footer
-- **Konec hry a skóre:** /frontend-xcharv23/src/app/components/result-table
-Další, které nejsou součástí návrhu:
-- **Kostka:** /frontend-xcharv23/src/app/components/dice
-- **Figurka:** /frontend-xcharv23/src/app/components/piece
+Odkazy na klíčové části FE (komponent je složka s .html + .ts + .scss):  
+- **Hlavní menu + Obrazovka pro zadání přezdívky:** /frontend-xcharv23/src/app/components/main-menu  
+- **Lobby:** /frontend-xcharv23/src/app/components/lobby  
+- **Herní plocha:** /frontend-xcharv23/src/app/components/board  
+- **Stavová oznámení:** /frontend-xcharv23/src/app/components/footer  
+- **Konec hry a skóre:** /frontend-xcharv23/src/app/components/result-table  
+Další, které nejsou součástí návrhu:  
+- **Kostka:** /frontend-xcharv23/src/app/components/dice  
+- **Figurka:** /frontend-xcharv23/src/app/components/piece  
 
 ## Výsledná implementace (Karolína Virágová)
 
@@ -58,7 +58,7 @@ Další, které nejsou součástí návrhu:
 Na kontrolní prezentaci nebyly žádné připomínky, kromě částečné prezentace propojení GUI komponent.
 
 ### Propojení GUI komponent v React projektu
-  Pro zajištění správné komunikace mezi těmito komponentami jsme využili mechanismus props (vstupních parametrů), který umožňuje předávat data a funkce mezi rodičovskými a dětskými komponentami.
+  Pro zajištění správné komunikace mezi těmito komponentami jsem využila mechanismus props (vstupních parametrů), který umožňuje předávat data a funkce mezi rodičovskými a dětskými komponentami.
   Stav jednotlivých komponent je spravován pomocí useState hooku, což umožňuje dynamickou změnu obsahu komponent v reálném čase. Pokud je potřeba, aby jedna komponenta reagovala na změny v jiné komponentě, používáme callback funkce, které se předávají jako props. Tyto callback funkce mohou aktualizovat stav v rodičovské komponentě, čímž se re-renderují i závislé komponenty.
   V aplikaci je propojení GUI komponent realizováno následujícím způsobem:
 
@@ -117,7 +117,8 @@ Zhodnocení: Uživatel nepochopil, jak se připojují ostatní hráči, jinak si
 - **Věková skupina:** 18-28
 - **Pohlaví:** Žena
 - **Technická zdatnost:** Pokročilá (Advanced)
-- **Pracovní zaměření:** IT leader
+- **Pracovní zaměření:** IT leader  
+
 #### 2. Popis průběhu testu:
 Test probíhal online, uživatel měl za úkol si se mnou zahrát Člověče nezlob se, tedy naplnit cíl projektu, bez jakékoliv instruktáže.
 Uživatel komentoval, co mu není jasné, co ho zmátlo, co nepochopil, atd.
@@ -144,21 +145,24 @@ Zhodnocení: Uživatel si myslí, že proces zahájení, vytvoření a připojen
 
 ### Uživatel C
 #### 1. Informace o uživateli:
-- **Věková skupina:** 52 let  
-- **Pohlaví:** žena  
+- **Věková skupina:**  52 let
+- **Pohlaví:** Žena
 - **Technická zdatnost:** Mírně pokročilá, používá počítač a mobilní telefon k běžné administrativní práci, jako je e-mail, prohlížení webu a používání základních aplikací.
-- **Pracovní zaměření:** Asistenka v mateřské škole  
+- **Pracovní zaměření:**  Asistenka v mateřské škole   
 
 #### 2. Popis průběhu testu:
 Testování bylo zahájeno úvodem, kde byla účastnice seznámena s cílem testování a postupem. Následně byla poskytnuta aplikace, kterou měla otestovat. Během testování bylo prováděno pozorování a zaznamenáno zda byl úkol proveden bez pomoci nebo s ní. Účastnice se pomohla ptát, když nevěděla. Po skončení testování byla vyzvána k shrnuti problémů během používání aplikace narazila a jaké měla dojmy. Testování  probíhalo v klidném prostředí po dobu 30 minut.
 
 ### Uživatel D
 #### 1. Informace o uživateli:
-- **Věková skupina:** 25–30 let  
-- **Pohlaví:** Muž  
+
+- **Věková skupina:** 25–30 let
+- **Pohlaví:** Muž
 - **Technická zdatnost:** Pokročilá, dovednosti v oblasti správy a údržby IT systémů, aplikací a zařízení. Je zkušený v používání softwarových nástrojů, včetně vývoje, administrace. Pravidelně se orientuje v nových technologiích
-- **Pracovní zaměření:** IT technik
-#### 2. Popis průběhu testu: 
+- **Pracovní zaměření:** IT technik  
+
+#### 2. Popis průběhu testu:
+
 Testování bylo zahájeno úvodem, kde byl účastník seznámen s cílem testování a postupem. Následně byla poskytnuta aplikace, kterou měl otestovat. Během testování bylo prováděno pozorování a zaznamenáno zda byl úkol proveden bez pomoci nebo s ní. Účastník se pomohl ptát, když nevěděla. Po skončení testování byla vyzvána k shrnuti problémů během používání aplikace narazila a jaké měla dojmy. Testování  probíhalo v klidném prostředí po dobu 30 minut.
 
 ### Ponaučení uživatel C a D - Karolína Virágová:
