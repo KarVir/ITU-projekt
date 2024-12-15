@@ -23,6 +23,13 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 - Adam Charvát: Oproti mému návrhu ve Figmě byl zrušen mezikrok mezi výsledkovou tabulkou a herní deskou ("Přejít na výsledky") a výsledky se zobrazí rovnou po skončení hry.
 - Adam Charvát: Šipky na herní desce (pro startovní a cílové pole), vycházelo z kritiky existujících řešení
 
+## Known bugs
+- V backendu není řešená situace 2 figurek stejného hráče na jednom políčku (jedna je v dalším kole vyhozena).
+
+**Adam Charvát**:
+- V případě mého frontendu tento stav backendu rozbije hru, že se nedá dohrát. (vznikne ghost figurka)
+- Dále špatně funguje předávání kola na druhého hráče v případě, že aktuální hráč nemůže pohnout s žádnou figurkou. (je potřeba kliknout na figurky mimo desku, ale mělo by se to dít automaticky)
+
 ## Rozdělení práce členů týmu na Výsledné implementaci (pouze FE)
 Každý člen týmu implementoval vlastní frontend. Implementace FE probíhala do samostatných složek pojmenovaných loginem daného autora.
 
