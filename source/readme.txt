@@ -9,7 +9,11 @@ Další, které nejsou součástí návrhu:
 - Figurka: /frontend-xcharv23/src/app/components/piece
 
 Odkazy na klíčové části FE (Karolína Virágová):
-...
+- Hlavní menu: /frontend-xvirag00/src/app.js
+- Obrazovka pro zadání přezdívky: /frontend-xvirag00/src/Nickname.js
+- Lobby: /frontend-xvirag00/src/RoomInfo.js
+- Herní plocha: /frontend-xvirag00/src/Board.js
+- Konec hry a skóre: /frontend-xvirag00/src/Ended.js
 
 Adresářová struktura:
 /
