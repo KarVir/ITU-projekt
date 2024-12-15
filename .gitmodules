@@ -1,3 +1,6 @@
 [submodule "source/backend"]
 	path = source/backend
 	url = https://github.com/Skulaurun/ClobrdoServer
+[submodule "source/frontend-xcharv23"]
+	path = source/frontend-xcharv23
+	url = https://github.com/Skulaurun/ClobrdoGUI
