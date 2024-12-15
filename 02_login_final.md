@@ -32,6 +32,7 @@ Na kontrolní prezentaci nebyly explicitně uvedené žádné nedostatky, ale v 
 - *Propojení GUI komponent: Demonstruje pouze částečně, k lepšímu hodnocení projektu je vhodné ještě vylepšit/rozšířit.*
 - Rozhodl jsem se to pro jistotu ve své části vylepšit, např. rozdělením větších komponent na komponenty menší a implementace komunikace mezi nimi.
 - Např. z komponenty herní desky BoardComponent byly oddělány figurky a jsou řešené samostatnou komponentou PieceComponent. To stejné taky pro kostku.
+- 
 **Frontend**
 Implementoval jsem celý frontend v Angularu samostatně.
 Odkazy na klíčové části FE (komponent je složka s .html + .ts + .scss):
