@@ -18,6 +18,84 @@ Každý člen týmu má jinou funkcionalitu, a výsledná aplikace tedy bude kom
 ## Rozdělení práce členů týmu na Výsledné implementaci (pouze FE)
 Každý člen týmu implementoval vlastní frontend. Implementace Fe probíhala do samostatných složek pojmenovaných loginem daného autora. 
 
+## Odchylky od původního zadání
+*Body zadání, jejichž implementaci jsme nestihli:*
+- Barvy nejsou viditelné v lobby.
+- Výměna herní desky nebyla implementována.
+- Časovač herního kola nebyl implementován.
+- Adam Charvát: Oproti mému návrhu ve Figmě byl zrušen mezikrok mezi výsledkovou tabulkou a herní deskou ("Přejít na výsledky") a výsledky se zobrazí rovnou po skončení hry.
+- Adam Charvát: Šipky na herní desce (pro startovní a cílové pole), vycházelo z kritiky existujících řešení
+
+## Výsledná implementace (Adam Charvát)
+**Kontrolní prezentace**
+Na kontrolní prezentaci nebyly explicitně uvedené žádné nedostatky, ale v reportu z mailu bylo uvedeno:
+- *Propojení GUI komponent: Demonstruje pouze částečně, k lepšímu hodnocení projektu je vhodné ještě vylepšit/rozšířit.*
+- Rozhodl jsem se to pro jistotu ve své části vylepšit, např. rozdělením větších komponent na komponenty menší a implementace komunikace mezi nimi.
+- Např. z komponenty herní desky BoardComponent byly oddělány figurky a jsou řešené samostatnou komponentou PieceComponent. To stejné taky pro kostku.
+**Frontend**
+Implementoval jsem celý frontend v Angularu samostatně.
+Odkazy na klíčové části FE (komponent je složka s .html + .ts + .scss):
+- **Hlavní menu + Obrazovka pro zadání přezdívky:** /frontend-xcharv23/src/app/components/main-menu
+- **Lobby:** /frontend-xcharv23/src/app/components/lobby
+- **Herní plocha:** /frontend-xcharv23/src/app/components/board
+- **Stavová oznámení:** /frontend-xcharv23/src/app/components/footer
+- **Konec hry a skóre:** /frontend-xcharv23/src/app/components/result-table
+Další, které nejsou součástí návrhu:
+- **Kostka:** /frontend-xcharv23/src/app/components/dice
+- **Figurka:** /frontend-xcharv23/src/app/components/piece
+
+### Uživatel A
+#### 1. Informace o uživateli:
+- **Věková skupina:** 18-28
+- **Pohlaví:** Žena
+- **Technická zdatnost:** Střední (Intermediate)
+- **Pracovní zaměření:** Product management
+
+#### 2. Popis průběhu testu:
+Test probíhal online, uživatel měl za úkol si se mnou zahrát Člověče nezlob se, tedy naplnit cíl projektu, bez jakékoliv instruktáže.
+Uživatel komentoval, co mu není jasné, co ho zmátlo, co nepochopil, atd.
+
+Při prvním otevření webové stránky byl uživatel zmatený, jelikož tam bylo vstupní pole "Enter game code" a on nevěděl, kde má vzít kód hry.
+Uživatel si myslí, že by bylo lepší dát "Create game" tlačítko jako první a pod to vstupní pole pro kód s "Join game" tlačítkem.
+
+Na další obrazovce (lobby) uživatel klikne rovnou na tlačítko "Start game", předtím než se druhý klient připojí.
+Uživateli z UI není jasné, že má v lobby počkat, než se všichni připojí a až potom zahájit hru.
+Uživatel očekává, že po zahájení hry se budou moct ostatní připojit a kód hry uvidí i ve spuštěné hře.
+
+Herní desku a jak hýbat s figurkami, házet s kostkou pochopil uživatel rychle. Hru jsme dohráli bez dalších komplikací.
+
+Zhodnocení: Uživatel nepochopil, jak se připojují ostatní hráči, jinak si myslí, že je UI intuitivní. Uživatel si myslí, že varianta řešení, kdy hýbe s figurkami manuálně je více interaktivní, dále mu přijde lepší varianta, kdy vymyslí kód místnosti, aby nebyl z náhodných znaků.
+
+### Uživatel B
+#### 1. Informace o uživateli:
+- **Věková skupina:** 18-28
+- **Pohlaví:** Žena
+- **Technická zdatnost:** Pokročilá (Advanced)
+- **Pracovní zaměření:** IT leader
+#### 2. Popis průběhu testu:
+Test probíhal online, uživatel měl za úkol si se mnou zahrát Člověče nezlob se, tedy naplnit cíl projektu, bez jakékoliv instruktáže.
+Uživatel komentoval, co mu není jasné, co ho zmátlo, co nepochopil, atd.
+
+Uživatel hned pochopil, jak funguje hlavní menu, nepopisoval stejné zmatení jako Uživatel A.
+V lobby uživatel udělá to stejné, co Uživatel A, tedy si myslí, že může hru zahájit před připojením ostatních.
+
+Uživatel popisuje, že pohyby na herní desce jsou nepřehledné a je těžké sledovat, co se děje.
+Uživatel si myslí, že by bylo lepší, kdyby figurky jezdily pouze po bílých polích desky (ne šikmo), dále říká, že by bylo dobré, kdyby cílové políčko, na které se pohybuje figurka bylo zvýrazněné.
+
+V případě, kdy uživatel má figurky na desce a jedna z nich je před domečkem a uživatel zároveň nehodil kostkou správný počet, aby se mohl do domečku dostat, tak by tato figurka neměla být zvýrazněna (neměla by blikat, že na ni může kliknout, když ve skutečnosti by přišel o tah).
+Tato situace uživatele zmátla, na figurku kliknul a ta se nepohla a tah přešel na dalšího hráče.
+
+Po delší době hraní uživatel popisuje, že dokáže lépe sledovat a chápat, co se děje na desce, ale celkově mu to přijde matoucí.
+
+V průběhu testování byl identifikován bug, kdy se figurka nepohnula do domečku, i když podle čísla na kostce měla.
+Hru jsme dohráli bez dalších komplikací.
+
+Zhodnocení: Uživatel si myslí, že proces zahájení, vytvoření a připojení se do hry je jednoduchý. Přijde mu lepší manuální házení s kostkou, protože se stihne ve hře zorientovat a upozorní ho to, že je na tahu. Uvádí, že lidem se nechce vymýšlet kód místnosti, a proto je lepší vygenerovaný. 
+
+#### Dva klíčové výsledky z pozorování (Uživatel A a B) - Adam Charvát:
+- Zásadním problémem je spuštění hry před připojením ostatních. Do lobby je potřeba umístit text (vysvětlivku), že se čeká na připojení ostatních hráčů. Popřípadě umožnit připojení do existující hry, ale to je implementačně náročnější (nutná úprava backendu). Nebo po kliknutí v situaci, že je hráč v lobby sám a nemá zapnuté vyplnění boty, tak zobrazit pod tlačítkem červený text "Hra bude zahájena v režimu jednoho hráče.", pokud klikne znova, tak se hra zahájí.
+- Lepší zvýraznění změn na herní desce, které uživatel popisuje (kolmý pohyb figurek a zvýraznění cílového pole), dále nezvýrazňovat figurky, s kterými uživatel nemnůže pohnout.
+
 ## Struktura projektu
 
 /
