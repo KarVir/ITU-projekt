@@ -7,8 +7,6 @@
  * 
  * @author Karolína Virágová (xvirag00)
  * 
- * @props {function} onSubmit - A function that is called when the user submits 
- *        a valid nickname. The nickname is passed as an argument to this function.
  */
 
 import React, { useState } from 'react';

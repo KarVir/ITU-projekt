@@ -6,27 +6,7 @@
  *              displaying room information, starting the game, and showing the game results after it ends.
  * 
  * @author Karolína Virágová (xvirag00)
- * 
- * @state {Object} socket - Socket connection to the server for real-time communication.
- * @state {string} roomCode - Room code for joining a room.
- * @state {boolean} showNickname - Determines whether to show the form for entering a nickname.
- * @state {string} ownerName - The name of the room owner.
- * @state {string} nickname - The player's nickname.
- * @state {Object} roomData - Data about the room, including the list of players.
- * @state {boolean} isCreateMode - Determines whether the user is trying to create a new room or join an existing one.
- * @state {boolean} fillWithBots - Determines whether the room will be filled with automatic players (bots).
- * @state {Object} gameData - Data about the current game, such as scores and game status.
- * @state {boolean} gameStarted - Determines whether the game has started.
- * @state {string} statusMessage - A message about the status, for example, informing about a player's connection.
- * @state {boolean} gameEnded - Determines whether the game has ended.
- * 
- * @functions {function} createRoom - Function to create a new room.
- * @functions {function} joinRoom - Function to join an existing room.
- * @functions {function} handleNicknameSubmit - Function to handle nickname submission.
- * @functions {function} startGame - Function to start the game if the player is the room owner.
- * @functions {function} handleReturnToMainScreen - Function to return to the main screen after the game ends.
- * @functions {function} handleNewGame - Function to start a new game after the previous one ends.
- * 
+ *
  */
 import './App.css';
 import { useEffect, useState } from 'react';
@@ -114,7 +94,6 @@ function App() {
 
     // When the game starts
     socket.on('game:started', (gameState) => {
-      console.log('Game started:', gameState);
       setStatusMessage(`Game started`);
       setGameData(gameState);
       setGameStarted(true);
@@ -212,7 +191,6 @@ function App() {
   // Function to return to the main screen after the game ends
   const handleReturnToMainScreen = () => {
     socket.disconnect();
-    console.log('Returned to main screen');
     socket.emit('game:leave');
     setSocket(null);
     setRoomCode('');
@@ -222,8 +200,6 @@ function App() {
     setGameEnded(false);
     setRoomData(null);
     setStatusMessage(``);
-    console.log("Current state after reset:");
-    console.log({ roomCode, showNickname, gameData, gameStarted, gameEnded, roomData, nickname });
   };
 
     // Function to start a new game after the previous one ended
@@ -233,22 +209,11 @@ function App() {
       socket.emit('game:start', { fillWithBots: false }, (response) => {
         if (response) {
           setGameData(response.gameState);
-          setGameStarted(true); // Start the new game
+          setGameStarted(true); 
         }
       });
-      console.log('START NEW GAME');
     };
-
-    const updatePlayerName = (id, newName) => {
-      setNickname(newName)
-      setRoomData(prevState => ({
-        ...prevState,
-        players: prevState.players.map(player =>
-          player.id === id ? { ...player, name: nickname } : player
-        ),
-      }));
-    };
-    
+   
   return (
     <div className="App">
       <header className="App-header">
@@ -284,7 +249,6 @@ function App() {
                   roomCode={roomData.key}
                   players={roomData.players}
                   ownerName={ownerName}
-                  onUpdatePlayerName={updatePlayerName}
                 />
                 {ownerName === nickname && (
                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

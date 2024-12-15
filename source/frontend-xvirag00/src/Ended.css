@@ -12,8 +12,8 @@
 
 .buttons {
   display: flex;
-  flex-direction: column; /* Zajistí, že tlačítka budou pod sebou */
-  gap: 10px; /* Mezera mezi tlačítky */
+  flex-direction: column; 
+  gap: 10px;
   margin-top: 20px;
   border-radius: 25px;
 }

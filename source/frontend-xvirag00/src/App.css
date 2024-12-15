@@ -1,54 +1,54 @@
 /* App.css */
 .App {
   text-align: center;
-  background-color: black; /* Černé pozadí */
-  min-height: 100vh; /* Ujistíme se, že pokryje celou obrazovku */
+  background-color: black;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: relative; /* Důležité pro absolutní pozicování kruhů */
+  position: relative;
 }
 
 .App-header {
-  color: white; /* Bílé písmo pro nadpis */
-  margin-bottom: 20px; /* Mezery mezi nadpisem a tlačítky */
+  color: white;
+  margin-bottom: 20px;
   z-index: 1;
-  text-shadow: -5px -5px 10px rgb(77, 74, 61); /* Stín pod textem */
+  text-shadow: -5px -5px 10px rgb(77, 74, 61);
 }
 
 
 .button-container {
   display: flex;
-  flex-direction: column; /* Vertikální zarovnání tlačítek */
+  flex-direction: column;
   align-items: center;
-  position: relative; /* Umístění tlačítek nad kruhy */
-  z-index: 1; /* Tlačítka budou na vrchu, protože mají vyšší z-index než kruhy */
-  margin-bottom: 30px; /* Větší mezera mezi tlačítky a kruhy */
+  position: relative;
+  z-index: 1;
+  margin-bottom: 30px;
 }
 
 input {
-  background-color: #fff; /* Bílé pozadí pro input */
-  color: black; /* Černý text */
-  border: 2px solid #ccc; /* Šedý okraj */
-  border-radius: 10px; /* Zaoblené rohy */
-  padding: 10px 20px; /* Vnitřní okraje */
-  margin-bottom: 15px; /* Mezery pod inputem */
-  font-size: 16px; /* Velikost písma */
-  width: 80%; /* Šířka inputu */
-  max-width: 300px; /* Maximální šířka inputu */
+  background-color: #fff;
+  color: black;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  width: 80%;
+  max-width: 300px;
 }
 
 input::placeholder {
-  color: black; /* Šedý text pro placeholder */
+  color: black;
 }
 
 button {
   border: none;
-  padding: 12px 24px; /* Vnitřní okraje */
-  margin-bottom: 15px; /* Mezery mezi tlačítky */
-  cursor: pointer; /* Ukazatel myši na tlačítkách */
-  font-size: 16px; /* Velikost písma */
+  padding: 12px 24px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 16px;
   border-radius: 25px;
   background-color: green;
   color: white;
@@ -56,53 +56,53 @@ button {
 }
 
 button:hover {
-  background-color: #45a049; /* Tmavší zelená při najetí myší */
+  background-color: #45a049;
 }
 
 button:active {
-  background-color: #3e8e41; /* Ještě tmavší zelená při stisknutí */
+  background-color: #3e8e41;
 }
 
 .circle-container {
-  display: grid; /* Použijeme grid pro vytvoření mřížky 2x2 */
-  grid-template-columns: repeat(2, 1fr); /* Dvě sloupce */
-  grid-template-rows: repeat(2, 1fr); /* Dva řádky */
-  justify-items: center; /* Horizontálně vycentrováno */
-  align-items: center; /* Vertikálně vycentrováno */
-  gap: 20px; /* Mezery mezi kruhy */
-  position: absolute; /* Absolutní pozicování, aby kruhy byly za tlačítky */
-  top: 50%; /* Vertikálně ve středu stránky */
-  left: 50%; /* Horizontálně ve středu stránky */
-  transform: translate(-50%, -50%); /* Posuneme o polovinu šířky/výšky pro centrování */
-  z-index: 0; /* Kruhy mají nižší z-index než tlačítka */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-template-rows: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
 }
 
 .circle {
-  width: 250px; /* Velikost kruhu */
+  width: 250px;
   height: 250px;
-  border-radius: 50%; /* Tvar kruhu */
-  opacity: 0.6; /* Poloprůhlednost pro efekt pozadí */
+  border-radius: 50%; 
+  opacity: 0.6; 
 }
 
 .circle1 {
-  background-color: red; /* První kruh - červený */
+  background-color: red; 
   box-shadow: -8px -8px 16px rgb(180, 16, 16);
 
 }
 
 .circle2 {
-  background-color: green; /* Druhý kruh - zelený */
+  background-color: green;
   box-shadow: 8px -8px 16px rgb(3, 95, 3);
 }
 
 .circle3 {
-  background-color: blue; /* Třetí kruh - modrý */
+  background-color: blue;
   box-shadow: -8px 8px 16px rgb(10, 10, 145);
 
 }
 
 .circle4 {
-  background-color: yellow; /* Čtvrtý kruh - žlutý */
+  background-color: yellow;
   box-shadow: 8px 8px 16px rgb(126, 126, 15);
 }
 

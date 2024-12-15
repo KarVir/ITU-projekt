@@ -7,13 +7,6 @@
  * 
  * @author Karolína Virágová (xvirag00)
  * 
- * @props {Array} score - An array of objects representing the players' scores 
- *         (each object contains `playerId` and `value`).
- * @props {Array} players - An array of objects representing the players 
- *         (each object contains `id` and `name`).
- * @props {number} houseLength - The length of the game (the highest value players are competing for).
- * @props {function} onReturnToApp - A function that is called when returning to the main screen.
- * @props {function} onNewGame - A function that is called when starting a new game.
  */
 
 import React from 'react';
@@ -32,7 +25,9 @@ const Ended = ({ score, players, houseLength, onReturnToApp, onNewGame }) => {
       <div className="scoreboard">
         <h3>Final Scores:</h3>
         <ul>
-          {score.map((playerScore, index) => (
+        {score
+          .sort((a, b) => b.value - a.value)
+          .map((playerScore, index) => (
             <li key={index}>
               {getPlayerName(playerScore.playerId)}: {playerScore.value}/{houseLength}
             </li>

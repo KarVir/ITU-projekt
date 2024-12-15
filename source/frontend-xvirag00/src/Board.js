@@ -7,29 +7,6 @@
  * 
  * @author Karolína Virágová (xvirag00)
  * 
- * @param {Object} props - Component properties.
- * @param {Object} props.gameData - Initial game data including players and board pieces.
- * @param {Object} props.socket - Socket connection to the server for real-time communication.
- * @param {function} props.handleReturnToMainScreen - Callback function to return to the main screen after the game ends.
- * 
- * @state {Array} players - List of players in the game.
- * @state {Array} pieces - List of game pieces on the board.
- * @state {string} error - Error messages to display to the user.
- * @state {string} statusMessage - Status messages about the game's progress.
- * @state {number} diceRoll - Result of the most recent dice roll.
- * @state {boolean} gameEnded - Indicates whether the game has ended.
- * @state {Array} score - List of player scores at the end of the game.
- * @state {number} houseLength - Number of pieces successfully moved to the home area.
- * @state {Map} tileColorMap - Map associating board tiles with player colors.
- * @state {Map} pieceMap - Map associating board tiles with game pieces.
- * 
- * @functions {function} startNewGame - Function to reset the game state and start a new game.
- * @functions {function} getTileColor - Function to determine the background color of a board tile.
- * @functions {function} isCrossTile - Function to check whether a tile is part of the main cross pattern.
- * @functions {function} renderPiece - Function to render a game piece on the board.
- * @functions {function} handleTileClick - Function to process user clicks on board tiles.
- * @functions {function} useEffect - Hook to set up and tear down socket event listeners.
- * 
  */
 import React, { useState, useMemo, useEffect } from 'react';
 import './Board.css';
@@ -40,25 +17,26 @@ import { faArrowRight, faArrowLeft, faArrowDown, faArrowUp } from '@fortawesome/
 
 
 const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded, socket, handleReturnToMainScreen , handleNewGame}) => {
-  let i = 0;
   // Size of the game board (11x11 grid)
   const gridSize = 11;
   // Center index of the board (5 for a gridSize of 11)
   const centerIndex = Math.floor(gridSize / 2);
   // Player list
-  const [players, setPlayers] = useState(gameData.players || []);
+  const [players] = useState(gameData.players || []);
   // Pieces on the board
   const [pieces, setPieces] = useState(gameData.board.pieces);
   // Error message state
   const [error, setError] = useState(null);
   // Game status message
   const [statusMessage, setStatusMessage] = useState("");
-  // Result of the dice roll
-  const [diceRoll, setDiceRoll] = useState(null); 
   // Scores of players
   const [score, setScore] = useState([]);
+  // Result of the dice roll
+   // const [diceRoll, setDiceRoll] = useState(null); 
   // Length of pieces in the home area
   const [houseLength, setHouseLength] = useState(0);
+  // selected piece
+  const [selectedPiece, setSelectedPiece] = useState(null);
 
   // Socket event handling and cleanup
   useEffect(() => {
@@ -73,24 +51,19 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
     });
 
     socket.on('game:updated', (data) => {
-      console.log('Game updated:', data);
-
       const { updatedPiece, collision } = data;
     
       if (!updatedPiece) {
-        console.error('No updatedPiece received from server!');
         return;
       }
-      
 
       if(collision){
-        const { piece} = collision;
+        const { piece } = collision;
         const { id, commonPosition, position, color, ownerId} = piece;
         setPieces(prevPieces => {
           const updatedPieces = [...prevPieces];
           const pieceIndex = pieces.findIndex(piece => piece.id === id);
           if (pieceIndex === -1) {
-            console.error(`Piece with ID ${id} not found in state!`);
             return prevPieces;
           }
   
@@ -107,16 +80,10 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
 
       const { id, commonPosition, position, color, ownerId} = updatedPiece;
     
-      if (!id) {
-        console.error('idpieces is undefined in updatedPiece:', updatedPiece);
-        return;
-      }
-      console.log(pieces);
       setPieces(prevPieces => {
         const updatedPieces = [...prevPieces];
         const pieceIndex = pieces.findIndex(piece => piece.id === id);
         if (pieceIndex === -1) {
-          console.error(`Piece with ID ${id} not found in state!`);
           return prevPieces;
         }
 
@@ -133,22 +100,20 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
     });
     
     socket.on('game:diceRolled', (data) => {
-      console.log('Game diceRolled:', data);
       const { playerId, dice, canDeploy } = data;
       const player = players.find(p => p.id === playerId);
 
       const playerName = player ? player.name : 'Unknown Player';
-      setDiceRoll(dice);
+        //setDiceRoll(dice);
       setStatusMessage(`Player ${playerName} rolled a ${dice}.`);
-
+      setError(null);
       if (canDeploy) {
         setStatusMessage(`Player ${playerName} can deploy a new piece!`);
         socket.emit('game:deployPiece');
       }
     });
 
-        socket.on('game:ended', (data) => {
-      console.log('Game has ended:', data);
+      socket.on('game:ended', (data) => {
       setGameEnded(true);
       setGameStarted(false);
       setScore(data.score); 
@@ -161,7 +126,7 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
       socket.off('game:diceRolled');
       socket.off('game:updated');
     };
-  }, [socket,score]);
+  }, [socket,score, pieces, players, setGameEnded, setGameStarted]);
 
   // Map to associate tiles with player colors
   const tileColorMap = useMemo(() => {
@@ -197,38 +162,44 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
 
   const pieceMap = useMemo(() => {
     const map = new Map();
-  
-    pieces.forEach(piece => {
-      // Pokud má figurka null commonPosition, přidělíme jí pozici
-      if (piece.commonPosition === null) {
-        if (piece.position === null) {
-          piece.position = i;
-          i++; // Inkrementace hodnoty i pro další pozici
-        }
 
-        if (piece.color === players[0].color) {
-          const { row, col } = home(piece.position); // Funkce home pro první hráče
-          map.set(`${row}-${col}`, piece); // Uložení figurky do mapy
-        } else if (piece.color === players[1].color) {
-          const { row, col } = home1(piece.position); // Funkce home1 pro druhého hráče
-          map.set(`${row}-${col}`, piece);
-        }else if (piece.color === players[2].color) {
-          const { row, col } = home2(piece.position); // Funkce home1 pro druhého hráče
-          map.set(`${row}-${col}`, piece);
-        }else if (piece.color === players[3].color) {
-          const { row, col } = home3(piece.position); // Funkce home1 pro druhého hráče
-          map.set(`${row}-${col}`, piece);
+   
+    const playerCounters = [0, 0, 0, 0];
+
+    pieces.forEach(piece => {
+        if (piece.commonPosition === null) {
+           
+            const playerIndex = players.findIndex(player => player.color === piece.color);
+
+            if (piece.position === null) {
+               piece.position = playerCounters[playerIndex];
+                playerCounters[playerIndex]++;
+            }
+
+           // Determine position based on color and player
+            if (playerIndex === 0) {
+                const { row, col } = home(piece.position);
+                map.set(`${row}-${col}`, piece);
+            } else if (playerIndex === 1) {
+                const { row, col } = home1(piece.position);
+                map.set(`${row}-${col}`, piece);
+            } else if (playerIndex === 2) {
+                const { row, col } = home2(piece.position);
+                map.set(`${row}-${col}`, piece);
+            } else if (playerIndex === 3) {
+                const { row, col } = home3(piece.position);
+                map.set(`${row}-${col}`, piece);
+            }
+        } else {
+            // Pokud je figurka na společné pozici, použijeme její commonPosition
+            const { row, col } = getCoordinatesFromValue(piece.commonPosition);
+            map.set(`${row}-${col}`, piece);
         }
-      } else {
-        // Pokud figurka má commonPosition, převedeme ji na souřadnice
-        const { row, col } = getCoordinatesFromValue(piece.commonPosition);
-        map.set(`${row}-${col}`, piece); // Uložení figurky do mapy
-      }
     });
-  
-    return map; // Vrácení mapy s figurkami
-  }, [pieces, i]); // UseMemo závisí pouze na pieces
-  
+
+    return map;
+}, [pieces,players]);
+
 
   // Check if a tile is part of the cross pattern
   const isCrossTile = (row, col) => {
@@ -251,29 +222,38 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
 
   // Render a game piece on the board
   const renderPiece = (row, col) => {
+
+    const playerCounters = [0, 0, 0, 0];
+
      const piece = pieces.find(p => {
+      
        if (p.commonPosition === null) {
+        const playerIndex = players.findIndex(player => player.color === p.color);
+
+          // Determine position based on color and player
         if (p.position === null) {
-            p.position = i;
-            i++; // Inkrementace hodnoty i pro další pozici
+            p.position = playerCounters[playerIndex];
+            playerCounters[playerIndex]++;
         }
-        if (p.color === players[0].color) {
-          const coords = home(p.position); // Funkce home pro první hráče
-          return coords.row === row && coords.col === col; // Porovnání s aktuálními souřadnicemi
-        } else if (p.color === players[1].color) {
-          const coords = home1(p.position); // Funkce home1 pro druhého hráče
-          return coords.row === row && coords.col === col; // Porovnání s aktuálními souřadnicemi
-        } else if (p.color === players[2].color) {
-          const coords = home2(p.position); // Funkce home1 pro druhého hráče
-          return coords.row === row && coords.col === col; // Porovnání s aktuálními souřadnicemi
-        } else if (p.color === players[3].color) {
-          const coords = home3(p.position); // Funkce home1 pro druhého hráče
-          return coords.row === row && coords.col === col; // Porovnání s aktuálními souřadnicemi
+
+        if (playerIndex === 0) {
+          const coords = home(p.position); 
+          return coords.row === row && coords.col === col;
+        } else if (playerIndex === 1) {
+          const coords = home1(p.position);
+          return coords.row === row && coords.col === col;
+        } else if (playerIndex === 2) {
+          const coords = home2(p.position);
+          return coords.row === row && coords.col === col;
+        } else if (playerIndex === 3) {
+          const coords = home3(p.position);
+          return coords.row === row && coords.col === col;
         } 
       }else{
         const coords = getCoordinatesFromValue(p.commonPosition);
         return coords.row === row && coords.col === col;
       }
+      return false;
     });
 
     if (piece) {
@@ -289,32 +269,44 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
         />
       );
     }
-
     return null;
   };
 
   // Handle user clicks on tiles
   const handleTileClick = (row, col) => {
-    const clickedPiece = pieceMap.get(`${row}-${col}`);
-    if (clickedPiece) {
-      const payload = {
-        commonPosition: clickedPiece.commonPosition,
-      };
+    setError(null);
+    if (selectedPiece) {
 
-      console.log("Sending position:", payload);
-      socket.emit('game:movePiece', payload, (data) => {
-        if (!data) {
-          setError(null);
-          setStatusMessage("Position sent successfully.");
-        } else {
-          setError("Failed to send position.");
-        }
-      });
+        const payload = {
+          commonPosition: selectedPiece.commonPosition, 
+        };
+  
+        socket.emit('game:movePiece', payload, (data) => {
+          if (!data) {
+            setError(null);
+            setStatusMessage("The piece's movement was successfully.");
+            setSelectedPiece(null);
+          } else {
+            setError("Failed to perform the piece movement.");
+          }
+        });
+   
     } else {
-      setError("No piece on this tile to select.");
+      setError("First, choose a figure!");
     }
   };
 
+  // Handle user clicks on pieces
+  const handlePieceClick = (row, col) => {
+    const clickedPiece = pieceMap.get(`${row}-${col}`);
+    if (clickedPiece) {
+      setSelectedPiece(clickedPiece);
+      setError(null); 
+      setStatusMessage(`Piece has been selected.`);
+    } else {
+      setError("When clicking on the target box, you need to click twice.");
+    }
+  };
 
     return (
       <div className="board-container">
@@ -330,7 +322,8 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
           <>
             {statusMessage && !error && <div className="status-message">{statusMessage}</div>}
             {error && <div className="error">{error}</div>}
-    
+
+            {/* Board */}
             <div className="board">
               {Array.from({ length: gridSize }).map((_, row) => (
                 <div key={row} className="board-row">
@@ -341,9 +334,10 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
                       style={{
                         backgroundColor: getTileColor(row, col),
                       }}
-                      onClick={() => handleTileClick(row, col)}
+                        onClick={() => handlePieceClick(row, col)}  
+                        onDoubleClick={() => handleTileClick(row, col)} 
                     >
-                      {renderPiece(row, col)}
+                      {renderPiece(row, col)}  
                     </div>
                   ))}
                 </div>
@@ -370,7 +364,7 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
                   left: '33%',
                   transform: 'translateX(-50%)',
                   fontSize: '30px',
-                  color: players[0].color, // Barva hráče 1
+                  color: players[0].color,
                 }}
               />
             )}
@@ -383,7 +377,7 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
                   left: '70%',
                   transform: 'translateX(-50%)',
                   fontSize: '30px',
-                  color: players[2].color, // Barva hráče 2
+                  color: players[2].color, 
                 }}
               />
             )}
@@ -396,7 +390,7 @@ const Board = ({  gameData, gameStarted, setGameStarted, gameEnded, setGameEnded
                   left: '20px',
                   transform: 'translateY(-50%)',
                   fontSize: '30px',
-                  color: players[1].color, // Barva hráče 3
+                  color: players[1].color, 
                 }}
               />
             )}

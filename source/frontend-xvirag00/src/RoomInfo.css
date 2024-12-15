@@ -1,14 +1,14 @@
 div{
-  color: white; /* Černý text */
+  color: white;
 }
 
 
 ul {
-  list-style-position: inside; /* Přesune tečku blíže k textu */
-  padding-left: 0; /* Odstraní vnitřní odsazení seznamu */
-  margin-left: 0; /* Odstraní vnější odsazení seznamu */
+  list-style-position: inside;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 li {
-  padding-left: 5px; /* Přidá trochu prostoru mezi tečku a text */
+  padding-left: 5px; 
 }
